@@ -1,0 +1,98 @@
+{
+  "added_at": "2020-01-25T19:29:51Z",
+  "added_by": {
+    "external_urls": {
+      "spotify": "https://open.spotify.com/user/12179984733"
+    },
+    "href": "https://api.spotify.com/v1/users/12179984733",
+    "id": "12179984733",
+    "type": "user",
+    "uri": "spotify:user:12179984733"
+  },
+  "is_local": false,
+  "primary_color": null,
+  "track": {
+    "album": {
+      "album_type": "compilation",
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+          },
+          "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+          "id": "0LyfQWJT6nXafLPZqxe9Of",
+          "name": "Various Artists",
+          "type": "artist",
+          "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+        }
+      ],
+      "available_markets": [
+      ],
+      "external_urls": {
+        "spotify": "https://open.spotify.com/album/7DyHLYvcFIAJ8iyuvM5eHp"
+      },
+      "href": "https://api.spotify.com/v1/albums/7DyHLYvcFIAJ8iyuvM5eHp",
+      "id": "7DyHLYvcFIAJ8iyuvM5eHp",
+      "images": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/769910756f42fd970560133ddd486aa9581c08e0",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/8873f60992a78a34a3e3e8b74071f20ec5cd239e",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/4d63c2dee7444db82d5eb7cef553a771bbfd4f38",
+          "width": 64
+        }
+      ],
+      "name": "ブラッククローバー 主題歌ベスト",
+      "release_date": "2019-09-25",
+      "release_date_precision": "day",
+      "total_tracks": 16,
+      "type": "album",
+      "uri": "spotify:album:7DyHLYvcFIAJ8iyuvM5eHp"
+    },
+    "artists": [
+      {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/artist/2eg5oiMWKYEJ5vVwW1YFCC"
+        },
+        "href": "https://api.spotify.com/v1/artists/2eg5oiMWKYEJ5vVwW1YFCC",
+        "id": "2eg5oiMWKYEJ5vVwW1YFCC",
+        "name": "みゆな",
+        "type": "artist",
+        "uri": "spotify:artist:2eg5oiMWKYEJ5vVwW1YFCC"
+      }
+    ],
+    "available_markets": [
+    ],
+    "disc_number": 1,
+    "duration_ms": 197346,
+    "episode": false,
+    "explicit": false,
+    "external_ids": {
+      "isrc": "JPB601803099"
+    },
+    "external_urls": {
+      "spotify": "https://open.spotify.com/track/6cIsGQXxVApzRayKSfD0KY"
+    },
+    "href": "https://api.spotify.com/v1/tracks/6cIsGQXxVApzRayKSfD0KY",
+    "id": "6cIsGQXxVApzRayKSfD0KY",
+    "is_local": false,
+    "name": "ガムシャラ",
+    "popularity": 27,
+    "preview_url": "https://p.scdn.co/mp3-preview/79e23189a83baece53585d323d052b01c9c0c6d0?cid=bd76114b469e47cc8102d19e914b3606",
+    "track": true,
+    "track_number": 9,
+    "type": "track",
+    "uri": "spotify:track:6cIsGQXxVApzRayKSfD0KY"
+  },
+  "video_thumbnail": {
+    "url": null
+  }
+}
