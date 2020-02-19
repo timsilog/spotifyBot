@@ -7,11 +7,11 @@ export interface PlaylistTrack {
 }
 
 export interface User {
-    external_urls: any,
-    href: string,
-    id: number,
-    type: string,
-    uri: string,
+  external_urls: any,
+  href: string,
+  id: number,
+  type: string,
+  uri: string,
 }
 
 export interface Track {
