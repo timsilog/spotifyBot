@@ -67,9 +67,9 @@ class SpotifyApi extends SpotifyWebApi {
     console.log('Refreshing Auth...')
     const refresh = await super.refreshAccessToken();
     super.setAccessToken(refresh.body.access_token);
-    const op = options;
-    op.accessToken = refresh.body.access_token;
-    fs.writeFileSync('../options.json', JSON.stringify(op));
+    // const op = options;
+    // op.accessToken = refresh.body.access_token;
+    // fs.writeFileSync('../options.json', JSON.stringify(op));
     console.log('Refreshed.');
   }
 
