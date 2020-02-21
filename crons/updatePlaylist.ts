@@ -1,23 +1,7 @@
-/*
-SPOTIFY PLAYLIST MANAGER
-To be ran as cron job to periodically clean our collaboration playlist.
-
-Eventually will automaticaly remove songs from the playlist to maintain 
-a certain size.
-Songs are stored in a MongoDb so I can eventually display lifetime history
-of who added which songs.
-*/
-
-
-import SpotifyApi from './spotifyApi';
-import * as options from './options.json';
+import SpotifyApi from '../spotifyApi';
+import * as options from '../options.json';
 import * as fs from 'fs';
-import { getDb } from './db';
-import { updatePlaylist } from './playlist';
-import * as nodemailer from 'nodemailer';
-
-const sampleSong: string = 'spotify:track:7oK9VyNzrYvRFo7nQEYkWN'; // Mr. Brightside
-
+import { updatePlaylist } from '../playlist';
 
 const scopes: string[] = ['user-read-private', 'user-read-email', 'playlist-modify-private', 'playlist-modify-public', 'playlist-read-collaborative'];
 const state: string = 'some-state-of-my-choice';
@@ -28,43 +12,14 @@ const spotifyApi = new SpotifyApi({
   redirectUri: 'http://localhost:3000'
 }, scopes, state);
 
-const transporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
-  port: 465,
-  secure: true,
-  auth: {
-    type: 'OAuth2',
-    user: options.email,
-    clientId: options.gmailClientId,
-    clientSecret: options.gmailClientSecret,
-    refreshToken: options.gmailRefreshToken,
-    accessToken: options.gmailAccessToken
-  }
-});
 
-const mailOptions = {
-  from: options.email,
-  to: options.email,
-  subject: 'Error from Spotify Bot',
-  text: 'test'
-};
 
-transporter.sendMail(mailOptions, function (error, info) {
-  if (error) {
-    console.log(error);
-  } else {
-    console.log('Email sent: ' + info.response);
-  }
-});
 
 const main = async () => {
   try {
     //     await getAuth();
 
-    // return await updatePlaylist(spotifyApi, options.playlistId);
-    const a = await spotifyApi.getTrack('4DcF5SAToAmmaF06vMstfJ');
-    return a;
-    // return res;
+    return await updatePlaylist(spotifyApi, options.playlistId);
   } catch (e) {
     console.log("ERROR");
     console.error(e);
