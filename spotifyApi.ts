@@ -52,7 +52,7 @@ class SpotifyApi extends SpotifyWebApi {
       op.accessToken = auth.body.access_token;
       op.refreshToken = auth.body.refresh_token;
       console.log(op);
-      fs.writeFileSync('./options.json', JSON.stringify(op));
+      fs.writeFileSync('../options.json', JSON.stringify(op));
       super.setAccessToken(auth.body.access_token);
       super.setRefreshToken(auth.body.refresh_token);
     } catch (e) {
@@ -69,7 +69,7 @@ class SpotifyApi extends SpotifyWebApi {
     super.setAccessToken(refresh.body.access_token);
     const op = options;
     op.accessToken = refresh.body.access_token;
-    fs.writeFileSync('./options.json', JSON.stringify(op));
+    fs.writeFileSync('../options.json', JSON.stringify(op));
     console.log('Refreshed.');
   }
 
