@@ -2,6 +2,7 @@ import * as SpotifyWebApi from 'spotify-web-api-node';
 import * as options from './options.json';
 import * as readline from 'readline-sync';
 import * as fs from 'fs';
+import { sendErrorEmail } from './email/sendEmail';
 
 class SpotifyApi extends SpotifyWebApi {
   private scopes: string[];
@@ -19,6 +20,17 @@ class SpotifyApi extends SpotifyWebApi {
     this.scopes = scopes;
     this.state = state;
     this.getAuth();
+  }
+
+  private handleError = async (err: any, fun: Function, params: any[]) => {
+    console.log(`Error`);
+    console.error(err);
+    if (err.message === 'Unauthorized') {
+      await this.refreshAuth();
+      return await fun(...params);
+    } else {
+      sendErrorEmail(err);
+    }
   }
 
   // Get auth to access Spotify API
@@ -65,12 +77,13 @@ class SpotifyApi extends SpotifyWebApi {
     try {
       return super.getPlaylistTracks(playlistId, options, callback);
     } catch (err) {
-      console.log(`Error: getPlaylistTracks()`);
-      console.error(err);
-      if (err.message === 'Unauthorized') {
-        await this.refreshAuth();
-        return await this.getPlaylistTracks(playlistId, options, callback);
-      }
+      // console.log(`Error: getPlaylistTracks()`);
+      // console.error(err);
+      // if (err.message === 'Unauthorized') {
+      //   await this.refreshAuth();
+      //   return await this.getPlaylistTracks(playlistId, options, callback);
+      // }
+      this.handleError(err, this.getPlaylistTracks, [playlistId, options, callback]);
     }
   }
 
@@ -78,12 +91,15 @@ class SpotifyApi extends SpotifyWebApi {
     try {
       return super.addTracksToPlaylist(playlistId, tracks, options, callback);
     } catch (err) {
-      console.log(`Error: addTracksToPlaylist()`);
-      console.error(err);
-      if (err.message === 'Unauthorized') {
-        await this.refreshAuth();
-        return await this.addTracksToPlaylist(playlistId, tracks, options, callback);
-      }
+      // console.log(`Error: addTracksToPlaylist()`);
+      // console.error(err);
+      // if (err.message === 'Unauthorized') {
+      //   await this.refreshAuth();
+      //   return await this.addTracksToPlaylist(playlistId, tracks, options, callback);
+      // } else {
+      //   sendErrorEmail(err);
+      // }
+      this.handleError(err, this.addTracksToPlaylist, [playlistId, tracks, options, callback]);
     }
   }
 
@@ -91,12 +107,15 @@ class SpotifyApi extends SpotifyWebApi {
     try {
       return super.removeTracksFromPlaylist(playlistId, uris, options, callback);
     } catch (err) {
-      console.log(`Error: removeTracksFromPlaylist()`);
-      console.error(err);
-      if (err.message === 'Unauthorized') {
-        await this.refreshAuth();
-        return await this.removeTracksFromPlaylist(playlistId, uris, options, callback);
-      }
+      // console.log(`Error: removeTracksFromPlaylist()`);
+      // console.error(err);
+      // if (err.message === 'Unauthorized') {
+      //   await this.refreshAuth();
+      //   return await this.removeTracksFromPlaylist(playlistId, uris, options, callback);
+      // } else {
+      //   sendErrorEmail(err);
+      // }
+      this.handleError(err, this.removeTracksFromPlaylist, [playlistId, uris, options, callback]);
     }
   }
 
@@ -104,12 +123,15 @@ class SpotifyApi extends SpotifyWebApi {
     try {
       return super.getUser(userId);
     } catch (err) {
-      console.log(`Error: getUser()`);
-      console.error(err);
-      if (err.message === 'Unauthorized') {
-        await this.refreshAuth();
-        return await this.getUser(userId);
-      }
+      // console.log(`Error: getUser()`);
+      // console.error(err);
+      // if (err.message === 'Unauthorized') {
+      //   await this.refreshAuth();
+      //   return await this.getUser(userId);
+      // } else {
+      //   sendErrorEmail(err);
+      // }
+      this.handleError(err, this.getUser, [userId]);
     }
   }
 
@@ -122,6 +144,8 @@ class SpotifyApi extends SpotifyWebApi {
       if (err.message === 'Unauthorized') {
         await this.refreshAuth();
         return await this.getTrack(trackId);
+      } else {
+        sendErrorEmail(err);
       }
     }
   }

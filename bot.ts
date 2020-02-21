@@ -14,7 +14,8 @@ import * as options from './options.json';
 import * as fs from 'fs';
 import { getDb } from './db';
 import { updatePlaylist } from './playlist';
-import * as nodemailer from 'nodemailer';
+import { sendErrorEmail } from './email/sendEmail';
+
 
 const sampleSong: string = 'spotify:track:7oK9VyNzrYvRFo7nQEYkWN'; // Mr. Brightside
 
@@ -28,43 +29,14 @@ const spotifyApi = new SpotifyApi({
   redirectUri: 'http://localhost:3000'
 }, scopes, state);
 
-const transporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
-  port: 465,
-  secure: true,
-  auth: {
-    type: 'OAuth2',
-    user: options.email,
-    clientId: options.gmailClientId,
-    clientSecret: options.gmailClientSecret,
-    refreshToken: options.gmailRefreshToken,
-    accessToken: options.gmailAccessToken
-  }
-});
-
-const mailOptions = {
-  from: options.email,
-  to: options.email,
-  subject: 'Error from Spotify Bot',
-  text: 'test'
-};
-
-transporter.sendMail(mailOptions, function (error, info) {
-  if (error) {
-    console.log(error);
-  } else {
-    console.log('Email sent: ' + info.response);
-  }
-});
 
 const main = async () => {
   try {
     //     await getAuth();
 
     // return await updatePlaylist(spotifyApi, options.playlistId);
-    const a = await spotifyApi.getTrack('4DcF5SAToAmmaF06vMstfJ');
+    const a = sendErrorEmail('test');
     return a;
-    // return res;
   } catch (e) {
     console.log("ERROR");
     console.error(e);

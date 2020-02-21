@@ -23,11 +23,10 @@ export const sendEmail = async (msg: string) => {
     text: msg
   };
 
-  transporter.sendMail(mailOptions, function (error, info) {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log('Email sent: ' + info.response);
-    }
-  });
+  return await transporter.sendMail(mailOptions);
+}
+
+export const sendErrorEmail = async (err: string) => {
+  const msg = `Cron job failed for the follow reason:\n${err}`;
+  return await sendEmail(msg);
 }

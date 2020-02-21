@@ -1,1 +1,17 @@
-undefined
+{
+  "accepted": [
+    "timjose3@gmail.com"
+  ],
+  "rejected": [],
+  "envelopeTime": 379,
+  "messageTime": 885,
+  "messageSize": 313,
+  "response": "250 2.0.0 OK  1582265176 v184sm1439125pfc.67 - gsmtp",
+  "envelope": {
+    "from": "timjose3@gmail.com",
+    "to": [
+      "timjose3@gmail.com"
+    ]
+  },
+  "messageId": "<887066ea-07a9-ca33-e4e2-be399e242e4f@gmail.com>"
+}
