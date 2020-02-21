@@ -24,3 +24,9 @@ export const getCurrentPlaylist = async (): Promise<t.PlaylistTrack[]> => {
   const playlist = await (await db.collection('songs').find({ 'track.id': { '$in': ids } })).toArray();
   return playlist;
 }
+
+export const closeDb = () => {
+  if (client) {
+    client.close();
+  }
+}

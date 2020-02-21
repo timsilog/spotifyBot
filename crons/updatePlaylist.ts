@@ -2,6 +2,7 @@ import SpotifyApi from '../spotifyApi';
 import * as options from '../options.json';
 import { updatePlaylist } from '../playlist';
 import { sendErrorEmail } from '../email/sendEmail';
+import { closeDb } from '../db';
 
 const scopes: string[] = ['user-read-private', 'user-read-email', 'playlist-modify-private', 'playlist-modify-public', 'playlist-read-collaborative'];
 const state: string = 'some-state-of-my-choice';
@@ -14,7 +15,9 @@ const spotifyApi = new SpotifyApi({
 
 const main = async () => {
   try {
-    return await updatePlaylist(spotifyApi, options.playlistId);
+    const res = await updatePlaylist(spotifyApi, options.playlistId);
+    closeDb();
+    return res;
   } catch (e) {
     console.log("ERROR");
     console.error(e);
@@ -22,4 +25,6 @@ const main = async () => {
   }
 }
 
-main();
+main().then(res => {
+  console.log(res);
+});
