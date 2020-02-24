@@ -33,10 +33,10 @@ const spotifyApi = new SpotifyApi({
 const main = async () => {
   try {
     //     await getAuth();
-
-    // return await updatePlaylist(spotifyApi, options.playlistId);
-    const a = sendErrorEmail('test');
-    return a;
+    const db = await getDb();
+    const current = (await db.collection('currentPlaylist').findOne()).currentList;
+    const playlist = await (await db.collection('songs').find({ 'track.id': { '$in': current } })).toArray();
+    return playlist;
   } catch (e) {
     console.log("ERROR");
     console.error(e);

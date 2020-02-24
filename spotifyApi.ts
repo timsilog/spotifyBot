@@ -77,13 +77,7 @@ class SpotifyApi extends SpotifyWebApi {
     try {
       return super.getPlaylistTracks(playlistId, options, callback);
     } catch (err) {
-      // console.log(`Error: getPlaylistTracks()`);
-      // console.error(err);
-      // if (err.message === 'Unauthorized') {
-      //   await this.refreshAuth();
-      //   return await this.getPlaylistTracks(playlistId, options, callback);
-      // }
-      this.handleError(err, this.getPlaylistTracks, [playlistId, options, callback]);
+      return this.handleError(err, this.getPlaylistTracks, [playlistId, options, callback]);
     }
   }
 
@@ -91,15 +85,7 @@ class SpotifyApi extends SpotifyWebApi {
     try {
       return super.addTracksToPlaylist(playlistId, tracks, options, callback);
     } catch (err) {
-      // console.log(`Error: addTracksToPlaylist()`);
-      // console.error(err);
-      // if (err.message === 'Unauthorized') {
-      //   await this.refreshAuth();
-      //   return await this.addTracksToPlaylist(playlistId, tracks, options, callback);
-      // } else {
-      //   sendErrorEmail(err);
-      // }
-      this.handleError(err, this.addTracksToPlaylist, [playlistId, tracks, options, callback]);
+      return this.handleError(err, this.addTracksToPlaylist, [playlistId, tracks, options, callback]);
     }
   }
 
@@ -107,15 +93,7 @@ class SpotifyApi extends SpotifyWebApi {
     try {
       return super.removeTracksFromPlaylist(playlistId, uris, options, callback);
     } catch (err) {
-      // console.log(`Error: removeTracksFromPlaylist()`);
-      // console.error(err);
-      // if (err.message === 'Unauthorized') {
-      //   await this.refreshAuth();
-      //   return await this.removeTracksFromPlaylist(playlistId, uris, options, callback);
-      // } else {
-      //   sendErrorEmail(err);
-      // }
-      this.handleError(err, this.removeTracksFromPlaylist, [playlistId, uris, options, callback]);
+      return this.handleError(err, this.removeTracksFromPlaylist, [playlistId, uris, options, callback]);
     }
   }
 
@@ -123,15 +101,7 @@ class SpotifyApi extends SpotifyWebApi {
     try {
       return super.getUser(userId);
     } catch (err) {
-      // console.log(`Error: getUser()`);
-      // console.error(err);
-      // if (err.message === 'Unauthorized') {
-      //   await this.refreshAuth();
-      //   return await this.getUser(userId);
-      // } else {
-      //   sendErrorEmail(err);
-      // }
-      this.handleError(err, this.getUser, [userId]);
+      return this.handleError(err, this.getUser, [userId]);
     }
   }
 
@@ -139,14 +109,7 @@ class SpotifyApi extends SpotifyWebApi {
     try {
       return super.getTrack(trackId);
     } catch (err) {
-      console.log(`Error: getTrack()`);
-      console.error(err);
-      if (err.message === 'Unauthorized') {
-        await this.refreshAuth();
-        return await this.getTrack(trackId);
-      } else {
-        sendErrorEmail(err);
-      }
+      return this.handleError(err, this.getTrack, [trackId]);
     }
   }
 }
