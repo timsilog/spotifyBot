@@ -10,6 +10,7 @@ interface CarouselProps {
 
 export default class Carousel extends React.Component<CarouselProps, {}> {
   private myRef = React.createRef<HTMLDivElement>();
+  private numSongs: number = 0;
   state: {
     users: {
       [key: number]: User
@@ -35,8 +36,8 @@ export default class Carousel extends React.Component<CarouselProps, {}> {
       if (!this.myRef.current) {
         return;
       }
-      this.myRef.current.scrollLeft += 300;
-    }, 10000);
+      this.myRef.current.scrollLeft += this.myRef.current.scrollWidth / this.numSongs;
+    }, 15000);
   }
 
   songChange = (increment: number) => {
@@ -57,6 +58,7 @@ export default class Carousel extends React.Component<CarouselProps, {}> {
 
     for (const song of this.state.songs) {
       const date = new Date(song.added_at);
+      // 604800000 is 7 days in milliseconds
       if (now.getTime() - date.getTime() <= 604800000) {
         songs.push(
           <HomeSong
@@ -68,6 +70,7 @@ export default class Carousel extends React.Component<CarouselProps, {}> {
         );
       }
     }
+    this.numSongs = songs.length;
     return (
       <div className="my-carousel" ref={this.myRef}>
         {songs.reverse()}

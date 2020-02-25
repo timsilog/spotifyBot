@@ -1,98 +1,26 @@
-[
-  {
-    "result": {
-      "n": 1,
-      "nModified": 1,
-      "opTime": {
-        "ts": "6797204157339009027",
-        "t": 3
-      },
-      "electionId": "7fffffff0000000000000003",
-      "ok": 1,
-      "$clusterTime": {
-        "clusterTime": "6797204157339009027",
-        "signature": {
-          "hash": "Ln5ZWIcQZRcF0l86VKT5RWA5bqE=",
-          "keyId": "6784221648024240130"
-        }
-      },
-      "operationTime": "6797204157339009027"
-    },
-    "connection": {
-      "domain": null,
-      "_events": {},
-      "_eventsCount": 4,
-      "id": 1,
-      "address": "54.148.180.84:27017",
-      "bson": {},
-      "socketTimeout": 360000,
-      "monitorCommands": false,
-      "closed": false,
-      "destroyed": false,
-      "lastIsMasterMS": 40
-    },
-    "modifiedCount": 1,
-    "upsertedId": null,
-    "upsertedCount": 0,
-    "matchedCount": 1,
-    "ops": [
-      {
-        "display_name": "Jeremiah Roy Gacusan",
-        "external_urls": {
-          "spotify": "https://open.spotify.com/user/1247376434"
-        },
-        "followers": {
-          "href": null,
-          "total": 14
-        },
-        "href": "https://api.spotify.com/v1/users/1247376434",
-        "id": "1247376434",
-        "images": [
-          {
-            "height": null,
-            "url": "https://scontent.xx.fbcdn.net/v/t1.0-1/p320x320/85225028_10157055933163036_8836204374620372992_n.jpg?_nc_cat=110&_nc_ohc=i6K89sZbNiIAX__DuHm&_nc_ht=scontent.xx&_nc_tp=6&oh=a0ca339981b4b408cf7622b0d98a1c81&oe=5EFA1D3B",
-            "width": null
-          }
-        ],
-        "type": "user",
-        "uri": "spotify:user:1247376434"
-      }
-    ],
-    "n": 1,
-    "nModified": 1,
-    "opTime": {
-      "ts": "6797204157339009027",
-      "t": 3
-    },
-    "electionId": "7fffffff0000000000000003",
-    "ok": 1,
-    "$clusterTime": {
-      "clusterTime": "6797204157339009027",
-      "signature": {
-        "hash": "Ln5ZWIcQZRcF0l86VKT5RWA5bqE=",
-        "keyId": "6784221648024240130"
-      }
-    },
-    "operationTime": "6797204157339009027"
+{
+  "a": {
+    "_id": "5e48f6b57cf576e42f019c61",
+    "choppingBlockSize": 10
   },
-  {
+  "update": {
     "result": {
       "n": 1,
       "nModified": 1,
       "opTime": {
-        "ts": "6797204157339009028",
+        "ts": "6797329802312286210",
         "t": 3
       },
       "electionId": "7fffffff0000000000000003",
       "ok": 1,
       "$clusterTime": {
-        "clusterTime": "6797204157339009028",
+        "clusterTime": "6797329802312286210",
         "signature": {
-          "hash": "Ln5ZWIcQZRcF0l86VKT5RWA5bqE=",
+          "hash": "gUAtI4ppm/XbpEaRNu9VXu45cQY=",
           "keyId": "6784221648024240130"
         }
       },
-      "operationTime": "6797204157339009028"
+      "operationTime": "6797329802312286210"
     },
     "connection": {
       "domain": null,
@@ -105,354 +33,27 @@
       "monitorCommands": false,
       "closed": false,
       "destroyed": false,
-      "lastIsMasterMS": 40
+      "lastIsMasterMS": 38
     },
     "modifiedCount": 1,
     "upsertedId": null,
     "upsertedCount": 0,
     "matchedCount": 1,
-    "ops": [
-      {
-        "display_name": "Seunghoon Christopher Yi",
-        "external_urls": {
-          "spotify": "https://open.spotify.com/user/1258583093"
-        },
-        "followers": {
-          "href": null,
-          "total": 5
-        },
-        "href": "https://api.spotify.com/v1/users/1258583093",
-        "id": "1258583093",
-        "images": [
-          {
-            "height": null,
-            "url": "https://scontent.xx.fbcdn.net/v/t1.0-1/c42.42.526.526a/s320x320/582338_3370010563352_809090084_n.jpg?_nc_cat=109&_nc_ohc=_pbrMb0trYAAX_8tjU6&_nc_ht=scontent.xx&oh=24fdbb7c36bfd6ad50acbfd8958f0f97&oe=5EFD64E9",
-            "width": null
-          }
-        ],
-        "type": "user",
-        "uri": "spotify:user:1258583093"
-      }
-    ],
     "n": 1,
     "nModified": 1,
     "opTime": {
-      "ts": "6797204157339009028",
+      "ts": "6797329802312286210",
       "t": 3
     },
     "electionId": "7fffffff0000000000000003",
     "ok": 1,
     "$clusterTime": {
-      "clusterTime": "6797204157339009028",
+      "clusterTime": "6797329802312286210",
       "signature": {
-        "hash": "Ln5ZWIcQZRcF0l86VKT5RWA5bqE=",
+        "hash": "gUAtI4ppm/XbpEaRNu9VXu45cQY=",
         "keyId": "6784221648024240130"
       }
     },
-    "operationTime": "6797204157339009028"
-  },
-  {
-    "result": {
-      "n": 1,
-      "nModified": 1,
-      "opTime": {
-        "ts": "6797204157339009029",
-        "t": 3
-      },
-      "electionId": "7fffffff0000000000000003",
-      "ok": 1,
-      "$clusterTime": {
-        "clusterTime": "6797204157339009029",
-        "signature": {
-          "hash": "Ln5ZWIcQZRcF0l86VKT5RWA5bqE=",
-          "keyId": "6784221648024240130"
-        }
-      },
-      "operationTime": "6797204157339009029"
-    },
-    "connection": {
-      "domain": null,
-      "_events": {},
-      "_eventsCount": 4,
-      "id": 1,
-      "address": "54.148.180.84:27017",
-      "bson": {},
-      "socketTimeout": 360000,
-      "monitorCommands": false,
-      "closed": false,
-      "destroyed": false,
-      "lastIsMasterMS": 40
-    },
-    "modifiedCount": 1,
-    "upsertedId": null,
-    "upsertedCount": 0,
-    "matchedCount": 1,
-    "ops": [
-      {
-        "display_name": "Genesis Delfin Ednalino",
-        "external_urls": {
-          "spotify": "https://open.spotify.com/user/12179984733"
-        },
-        "followers": {
-          "href": null,
-          "total": 25
-        },
-        "href": "https://api.spotify.com/v1/users/12179984733",
-        "id": "12179984733",
-        "images": [
-          {
-            "height": null,
-            "url": "https://scontent.xx.fbcdn.net/v/t1.0-1/c79.0.320.320a/p320x320/1656288_851408578223604_4127150371674775570_n.jpg?_nc_cat=107&_nc_oc=AQnB_hzmrpw4pr2r_ucJKzfIHxtrBtyd4BimtNfRX4hSs9ehJ_AoOo0OUJrEdBKtCXo&_nc_ht=scontent.xx&oh=6ac5b6ccd97fdabcfbf60ad647ca89fc&oe=5EBA80B7",
-            "width": null
-          }
-        ],
-        "type": "user",
-        "uri": "spotify:user:12179984733"
-      }
-    ],
-    "n": 1,
-    "nModified": 1,
-    "opTime": {
-      "ts": "6797204157339009029",
-      "t": 3
-    },
-    "electionId": "7fffffff0000000000000003",
-    "ok": 1,
-    "$clusterTime": {
-      "clusterTime": "6797204157339009029",
-      "signature": {
-        "hash": "Ln5ZWIcQZRcF0l86VKT5RWA5bqE=",
-        "keyId": "6784221648024240130"
-      }
-    },
-    "operationTime": "6797204157339009029"
-  },
-  {
-    "result": {
-      "n": 1,
-      "nModified": 1,
-      "opTime": {
-        "ts": "6797204161633976321",
-        "t": 3
-      },
-      "electionId": "7fffffff0000000000000003",
-      "ok": 1,
-      "$clusterTime": {
-        "clusterTime": "6797204161633976321",
-        "signature": {
-          "hash": "iHL/Yfd0IOkC44l3UAF3sfTEMrs=",
-          "keyId": "6784221648024240130"
-        }
-      },
-      "operationTime": "6797204161633976321"
-    },
-    "connection": {
-      "domain": null,
-      "_events": {},
-      "_eventsCount": 4,
-      "id": 1,
-      "address": "54.148.180.84:27017",
-      "bson": {},
-      "socketTimeout": 360000,
-      "monitorCommands": false,
-      "closed": false,
-      "destroyed": false,
-      "lastIsMasterMS": 40
-    },
-    "modifiedCount": 1,
-    "upsertedId": null,
-    "upsertedCount": 0,
-    "matchedCount": 1,
-    "ops": [
-      {
-        "display_name": "Tim Jose",
-        "external_urls": {
-          "spotify": "https://open.spotify.com/user/timsilog"
-        },
-        "followers": {
-          "href": null,
-          "total": 21
-        },
-        "href": "https://api.spotify.com/v1/users/timsilog",
-        "id": "timsilog",
-        "images": [
-          {
-            "height": null,
-            "url": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=10152279923890202&height=300&width=300&ext=1585148023&hash=AeQwAE8ItLQDG9my",
-            "width": null
-          }
-        ],
-        "type": "user",
-        "uri": "spotify:user:timsilog"
-      }
-    ],
-    "n": 1,
-    "nModified": 1,
-    "opTime": {
-      "ts": "6797204161633976321",
-      "t": 3
-    },
-    "electionId": "7fffffff0000000000000003",
-    "ok": 1,
-    "$clusterTime": {
-      "clusterTime": "6797204161633976321",
-      "signature": {
-        "hash": "iHL/Yfd0IOkC44l3UAF3sfTEMrs=",
-        "keyId": "6784221648024240130"
-      }
-    },
-    "operationTime": "6797204161633976321"
-  },
-  {
-    "result": {
-      "n": 1,
-      "nModified": 1,
-      "opTime": {
-        "ts": "6797204161633976326",
-        "t": 3
-      },
-      "electionId": "7fffffff0000000000000003",
-      "ok": 1,
-      "$clusterTime": {
-        "clusterTime": "6797204161633976326",
-        "signature": {
-          "hash": "iHL/Yfd0IOkC44l3UAF3sfTEMrs=",
-          "keyId": "6784221648024240130"
-        }
-      },
-      "operationTime": "6797204161633976326"
-    },
-    "connection": {
-      "domain": null,
-      "_events": {},
-      "_eventsCount": 4,
-      "id": 1,
-      "address": "54.148.180.84:27017",
-      "bson": {},
-      "socketTimeout": 360000,
-      "monitorCommands": false,
-      "closed": false,
-      "destroyed": false,
-      "lastIsMasterMS": 40
-    },
-    "modifiedCount": 1,
-    "upsertedId": null,
-    "upsertedCount": 0,
-    "matchedCount": 1,
-    "ops": [
-      {
-        "display_name": "David Huang",
-        "external_urls": {
-          "spotify": "https://open.spotify.com/user/12166489779"
-        },
-        "followers": {
-          "href": null,
-          "total": 10
-        },
-        "href": "https://api.spotify.com/v1/users/12166489779",
-        "id": "12166489779",
-        "images": [
-          {
-            "height": null,
-            "url": "https://scontent.xx.fbcdn.net/v/t31.0-1/p320x320/18921001_10154949135564331_129476814455746269_o.jpg?_nc_cat=104&_nc_ohc=RXc6TcrfkhUAX_IVcDl&_nc_ht=scontent.xx&_nc_tp=6&oh=488bdaf2ad3ab578c04b2fdf2c109d8c&oe=5EB66E0F",
-            "width": null
-          }
-        ],
-        "type": "user",
-        "uri": "spotify:user:12166489779"
-      }
-    ],
-    "n": 1,
-    "nModified": 1,
-    "opTime": {
-      "ts": "6797204161633976326",
-      "t": 3
-    },
-    "electionId": "7fffffff0000000000000003",
-    "ok": 1,
-    "$clusterTime": {
-      "clusterTime": "6797204161633976326",
-      "signature": {
-        "hash": "iHL/Yfd0IOkC44l3UAF3sfTEMrs=",
-        "keyId": "6784221648024240130"
-      }
-    },
-    "operationTime": "6797204161633976326"
-  },
-  {
-    "result": {
-      "n": 1,
-      "nModified": 1,
-      "opTime": {
-        "ts": "6797204161633976327",
-        "t": 3
-      },
-      "electionId": "7fffffff0000000000000003",
-      "ok": 1,
-      "$clusterTime": {
-        "clusterTime": "6797204161633976327",
-        "signature": {
-          "hash": "iHL/Yfd0IOkC44l3UAF3sfTEMrs=",
-          "keyId": "6784221648024240130"
-        }
-      },
-      "operationTime": "6797204161633976327"
-    },
-    "connection": {
-      "domain": null,
-      "_events": {},
-      "_eventsCount": 4,
-      "id": 1,
-      "address": "54.148.180.84:27017",
-      "bson": {},
-      "socketTimeout": 360000,
-      "monitorCommands": false,
-      "closed": false,
-      "destroyed": false,
-      "lastIsMasterMS": 40
-    },
-    "modifiedCount": 1,
-    "upsertedId": null,
-    "upsertedCount": 0,
-    "matchedCount": 1,
-    "ops": [
-      {
-        "display_name": "Jonah Gacusan",
-        "external_urls": {
-          "spotify": "https://open.spotify.com/user/12150870035"
-        },
-        "followers": {
-          "href": null,
-          "total": 8
-        },
-        "href": "https://api.spotify.com/v1/users/12150870035",
-        "id": "12150870035",
-        "images": [
-          {
-            "height": null,
-            "url": "https://scontent.xx.fbcdn.net/v/t1.0-1/s320x320/15940607_10210459440776345_9067105412497640862_n.jpg?_nc_cat=103&_nc_sid=0c64ff&_nc_ohc=_cnxj55Q3y0AX8OO_FH&_nc_ht=scontent.xx&_nc_tp=7&oh=9bb45f1bbe602770046ee95769bdbac1&oe=5EBE3ACD",
-            "width": null
-          }
-        ],
-        "type": "user",
-        "uri": "spotify:user:12150870035"
-      }
-    ],
-    "n": 1,
-    "nModified": 1,
-    "opTime": {
-      "ts": "6797204161633976327",
-      "t": 3
-    },
-    "electionId": "7fffffff0000000000000003",
-    "ok": 1,
-    "$clusterTime": {
-      "clusterTime": "6797204161633976327",
-      "signature": {
-        "hash": "iHL/Yfd0IOkC44l3UAF3sfTEMrs=",
-        "keyId": "6784221648024240130"
-      }
-    },
-    "operationTime": "6797204161633976327"
+    "operationTime": "6797329802312286210"
   }
-]
+}

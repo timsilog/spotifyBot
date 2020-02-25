@@ -12,6 +12,7 @@ html, body, #root, #root>div {
   margin-left: 1%;
   margin-top: 2%;
   margin-bottom: 1%;
+  overflow: hidden;
 }
 
 .my-container {
@@ -37,6 +38,8 @@ html, body, #root, #root>div {
   height: 3em;
 }
 
+
+
 a {
   text-decoration: none;
   color: #ffffff;
@@ -50,14 +53,19 @@ a:hover {
 .home-link {
   margin-left: 1%;
   font-size: 2.2em;
+  overflow: hidden;
+  height: 1.2em;
+  cursor: pointer;
 }
 
 .users-link {
   margin-left: 4%;
+  cursor: pointer;
 }
 
 .songs-link {
   margin-left: 2%;
+  cursor: pointer;
 }
 
 .home {
@@ -90,7 +98,31 @@ a:hover {
   scroll-snap-align: start;
 }
 
-.my-carousel-item:hover > .song-title-container > .song-title {
+.play-button-container {
+  position: relative;
+}
+
+.play-button {
+  position: absolute;
+  bottom: .65em;
+  left: .05em;
+  margin-left: 3%;
+  height: 14em;
+  width: 14em;
+  background-color: #505050;
+  opacity: .2;
+  display: none;
+}
+
+.play-button:active {
+  opacity: .3;
+}
+
+.home-song-container:hover > .play-button-container > .play-button {
+  display: block;
+}
+
+.home-song-container:hover > .my-carousel-item > .song-title-container > .song-title {
   animation: 12s slide-left linear infinite;
   animation-delay: 1s;
 }

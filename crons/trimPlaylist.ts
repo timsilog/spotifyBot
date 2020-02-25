@@ -1,6 +1,6 @@
 import SpotifyApi from '../spotifyApi';
 import * as options from '../options.json';
-import { updatePlaylist } from '../playlist';
+import { trimPlaylist } from '../playlist';
 import { sendErrorEmail } from '../email/sendEmail';
 import { closeDb } from '../db';
 
@@ -13,18 +13,22 @@ const spotifyApi = new SpotifyApi({
   redirectUri: 'http://localhost:3000'
 }, scopes, state);
 
-const main = async () => {
+const main = async (attempt: number) => {
+  if (attempt > 3) {
+    return;
+  }
   try {
-    const res = await updatePlaylist(spotifyApi, options.playlistId);
+    const res = await trimPlaylist(spotifyApi, options.playlistId);
     closeDb();
     return res;
   } catch (e) {
     console.log("ERROR");
     console.error(e);
-    await sendErrorEmail(e, 'updatePlaylist()');
+    await sendErrorEmail(e, 'trimPlaylist()');
+    return await main(attempt + 1);
   }
 }
 
-main().then(res => {
+main(1).then(res => {
   console.log(res);
 });

@@ -1,6 +1,7 @@
 import React from 'react';
 import { PlaylistTrack, User } from '../../../types';
 import '../App.css'
+import playButton from '../img/playButton.png';
 
 interface SongProps {
   user: User,
@@ -52,17 +53,27 @@ export default class HomeSong extends React.Component<SongProps, {}> {
 
   render() {
     return (
-      <div className='my-carousel-item'>
-        <div className='song-title-container'>
-          <div className='song-title'>{`${this.state.song.track.name} - ${this.state.song.track.artists.map(artist => artist.name).join(', ')}`}</div>
+      <div className='home-song-container'>
+        <div className='my-carousel-item'>
+          <div className='song-title-container'>
+            <div className='song-title'>{`${this.state.song.track.name} - ${this.state.song.track.artists.map(artist => artist.name).join(', ')}`}</div>
+          </div>
+          <img
+            className='album'
+            src={this.state.song.track.album.images[0].url}
+            alt='album'
+          />
+          <div className='user'>
+            <div className='user-display-name'>{this.state.user.display_name.split(' ')[0]}</div>
+          </div>
         </div>
-        <img
-          className='album'
-          src={this.state.song.track.album.images[0].url}
-          alt='album'
-          onClick={() => this.handlePress()} />
-        <div className='user'>
-          <div className='user-display-name'>{this.state.user.display_name.split(' ')[0]}</div>
+        <div className='play-button-container'>
+          <img
+            className='play-button'
+            src={playButton}
+            alt='play-button'
+            onClick={() => this.handlePress()}
+          />
         </div>
       </div>
     )

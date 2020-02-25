@@ -30,3 +30,9 @@ export const closeDb = () => {
     client.close();
   }
 }
+
+export const changeChoppingBlockSize = async (newSize: number) => {
+  const db = await getDb();
+  const update = db.collection('botState').updateOne({}, { '$set': { choppingBlockSize: newSize } })
+  return update;
+}

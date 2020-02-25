@@ -26,7 +26,7 @@ export const sendEmail = async (msg: string) => {
   return await transporter.sendMail(mailOptions);
 }
 
-export const sendErrorEmail = async (err: string) => {
-  const msg = `Cron job failed for the follow reason:\n${err}`;
+export const sendErrorEmail = async (err: string, from: string) => {
+  const msg = `Cron job failed from ${from} for the follow reason:\n${err}`;
   return await sendEmail(msg);
 }

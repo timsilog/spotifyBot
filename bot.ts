@@ -12,7 +12,7 @@ of who added which songs.
 import SpotifyApi from './spotifyApi';
 import * as options from './options.json';
 import * as fs from 'fs';
-import { getDb } from './db';
+import { getDb, changeChoppingBlockSize } from './db';
 import { updatePlaylist } from './playlist';
 import { sendErrorEmail } from './email/sendEmail';
 import * as t from './types';
@@ -35,14 +35,9 @@ const main = async () => {
     // await getAuth();
     const insertions: any[] = [];
     const db = await getDb();
-    const users = await (await db.collection('users').find()).toArray();
-    for (const badUser of users) {
-      const user = badUser.body;
-      const u: any = await spotifyApi.getUser(user.id);
-      const us = u.body;
-      insertions.push(await db.collection('users').replaceOne({ 'body.id': user.id }, us));
-    }
-    return insertions;
+    const update = await changeChoppingBlockSize(10);
+    const a = await db.collection('botState').findOne();
+    return { a, update };
     // const current = (await db.collection('currentPlaylist').findOne()).currentList;
     // const playlist = await (await db.collection('songs').find({ 'track.id': { '$in': current } })).toArray();
     // return playlist;

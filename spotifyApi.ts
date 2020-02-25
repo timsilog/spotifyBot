@@ -30,7 +30,7 @@ class SpotifyApi extends SpotifyWebApi {
       await this.refreshAuth();
       return await fun(...params);
     } else {
-      sendErrorEmail(err);
+      sendErrorEmail(err, `SpotifyApi: ${Function.name}`);
     }
   }
 
