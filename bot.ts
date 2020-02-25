@@ -35,8 +35,10 @@ const main = async () => {
     //     await getAuth();
     const db = await getDb();
     const current = (await db.collection('currentPlaylist').findOne()).currentList;
-    const playlist = await (await db.collection('songs').find({ 'track.id': { '$in': current } })).toArray();
-    return playlist;
+    // const playlist = await (await db.collection('songs').find({ 'track.id': { '$in': current } })).toArray();
+    // return playlist;
+    const song = await db.collection('songs').findOne();
+    return song;
   } catch (e) {
     console.log("ERROR");
     console.error(e);
