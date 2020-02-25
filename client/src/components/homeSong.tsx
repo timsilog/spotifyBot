@@ -4,7 +4,8 @@ import '../App.css'
 
 interface SongProps {
   user: User,
-  song: PlaylistTrack
+  song: PlaylistTrack,
+  songChange: Function
 }
 
 export default class HomeSong extends React.Component<SongProps, {}> {
@@ -13,6 +14,7 @@ export default class HomeSong extends React.Component<SongProps, {}> {
     song: PlaylistTrack;
     audio: HTMLAudioElement;
     isPlaying: boolean;
+    songChange: Function;
   };
 
   constructor(props: SongProps) {
@@ -21,9 +23,23 @@ export default class HomeSong extends React.Component<SongProps, {}> {
       user: props.user,
       song: props.song,
       audio: new Audio(props.song.track.preview_url),
-      isPlaying: false
+      isPlaying: false,
+      songChange: props.songChange
     };
     this.state.audio.volume = .3;
+    this.state.audio.onended = this.handleAudioOff;
+    this.state.audio.onpause = this.handleAudioOff;
+    this.state.audio.onplay = this.handleAudioOn;
+  }
+
+  handleAudioOff = () => {
+    this.setState({ isPlaying: false });
+    this.state.songChange(-1);
+  }
+
+  handleAudioOn = () => {
+    this.setState({ isPlaying: true });
+    this.state.songChange(1);
   }
 
   handlePress = () => {
@@ -32,26 +48,21 @@ export default class HomeSong extends React.Component<SongProps, {}> {
     } else {
       this.state.audio.play();
     }
-    this.setState({ isPlaying: !this.state.isPlaying });
   }
 
   render() {
-    // const audio = new Audio(this.state.song.track.preview_url);
     return (
       <div className='my-carousel-item'>
-        <div className='user'>
-          <img
-            src={this.state.user.images[0].url}
-            className='user-image'
-            alt={`${this.state.user.id}`} />
+        <div className='song-title-container'>
+          <div className='song-title'>{`${this.state.song.track.name} - ${this.state.song.track.artists.map(artist => artist.name).join(', ')}`}</div>
         </div>
         <img
           className='album'
           src={this.state.song.track.album.images[0].url}
           alt='album'
           onClick={() => this.handlePress()} />
-        <div className='song-title-container'>
-          <div className='song-title'>{`${this.state.song.track.name} - ${this.state.song.track.artists.map(artist => artist.name).join(', ')}`}</div>
+        <div className='user'>
+          <div className='user-display-name'>{this.state.user.display_name.split(' ')[0]}</div>
         </div>
       </div>
     )

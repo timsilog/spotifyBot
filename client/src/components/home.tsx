@@ -10,10 +10,10 @@ export default class Home extends Component<SongProps, {}> {
     users: {
       [key: number]: User
     },
-    songs: PlaylistTrack[]
+    songs: PlaylistTrack[],
   } = {
       users: {},
-      songs: []
+      songs: [],
     }
 
   constructor(props: SongProps) {
@@ -24,7 +24,7 @@ export default class Home extends Component<SongProps, {}> {
   render() {
     return (
       <div className="home">
-        <h2>Recently Added</h2>
+        <div className='title'>Recently Added</div>
         {
           <Carousel songs={this.state.songs} users={this.state.users}></Carousel>
         }

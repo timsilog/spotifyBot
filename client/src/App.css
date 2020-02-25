@@ -6,9 +6,12 @@ html, body, #root, #root>div {
   background-image: linear-gradient(to bottom right, #A474AA, #101010);
 }
 
-h2 {
-  margin-left: 2%;
+.title {
+  font-weight: bold;
+  font-size: 2em;
+  margin-left: 1%;
   margin-top: 2%;
+  margin-bottom: 1%;
 }
 
 .my-container {
@@ -67,9 +70,11 @@ a:hover {
   display: flex;
   flex-direction: row;
   align-items: center;
-  height: 20em;
+  height: 17em;
   width: 100%;
   overflow: scroll;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
 }
 
 .my-carousel-item {
@@ -82,6 +87,7 @@ a:hover {
   min-width: 15em;
   background-size: auto;
   overflow: hidden;
+  scroll-snap-align: start;
 }
 
 .my-carousel-item:hover > .song-title-container > .song-title {
@@ -96,12 +102,15 @@ a:hover {
 }
 
 .user {
-
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
 }
 
-.user-image {
-  border-radius: 50%;
-  height: 3em;
+.user-display-name {
+  margin-right: 5%;
+  font-size: .6em;
 }
 
 .song-title-container {
