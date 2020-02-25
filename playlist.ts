@@ -21,23 +21,27 @@ export const getFullSpotifyPlaylist = async (spotifyApi: SpotifyApi, playlistId:
   return playlist;
 }
 
-// Add songs to the playlist
+// Add songs to a playlist I own
 export const addSongs = async (spotifyApi: SpotifyApi, playlistId: string, songIds: string[]) => {
-  const res = await spotifyApi.addTracksToPlaylist(playlistId, songIds);
+  const songs: string[] = [];
+  for (const songId of songIds) {
+    songs.push(`spotify:track:${songId}`);
+  }
+  const res = await spotifyApi.addTracksToPlaylist(playlistId, songs);
   return res;
 }
 
 // Remove songs from the playlist
-// TODO Add to graveyard
-export const removeSongs = async (spotifyApi: SpotifyApi, playlistId: string, songIds: string[]) => {
+export const removeSongs = async (spotifyApi: SpotifyApi, playlistId: string, graveyardId: string, songIds: string[]) => {
   const uris: { uri: string, positions?: number[] }[] = [];
   for (const songId of songIds) {
     uris.push({
-      uri: songId
+      uri: `spotify:track:${songId}`
     });
   }
-  const res = await spotifyApi.removeTracksFromPlaylist(playlistId, uris, {});
-  return res;
+  const removed = await spotifyApi.removeTracksFromPlaylist(playlistId, uris, {});
+  const added = await addSongs(spotifyApi, graveyardId, songIds);
+  return { added, removed };
 }
 
 // If user who added the song isn't already in the db, add them
@@ -118,9 +122,17 @@ export const updatePlaylist = async (spotifyApi: SpotifyApi, playlistId: string)
   return insertions;
 }
 
-export const trimPlaylist = async (spotifyApi: SpotifyApi, playlistId: string) => {
+// trim playlist size down to desired size from db
+export const trimPlaylist = async (spotifyApi: SpotifyApi, playlistId: string, graveyardId: string) => {
   const db = await getDb();
-
-  const currentPl: PlaylistTrack[] = await getFullSpotifyPlaylist(spotifyApi, playlistId);
-
+  const trimTo: number = (await db.collection('botState').findOne()).playlistSize;
+  const plIds: string[] = (await db.collection('currentPlaylist').findOne()).currentList;
+  if (plIds.length <= trimTo) {
+    return { removed: 'none' };
+  }
+  const choppingBlock: string[] = plIds.slice(0, plIds.length - trimTo);
+  const remaining: string[] = plIds.slice(plIds.length - trimTo);
+  const removed = await removeSongs(spotifyApi, playlistId, graveyardId, choppingBlock);
+  const dbInsertion = await db.collection('currentPlaylist').replaceOne({}, { currentList: remaining });
+  return { removed, dbInsertion };
 }

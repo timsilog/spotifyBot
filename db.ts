@@ -31,8 +31,8 @@ export const closeDb = () => {
   }
 }
 
-export const changeChoppingBlockSize = async (newSize: number) => {
+export const changePlaylistSize = async (newSize: number) => {
   const db = await getDb();
-  const update = db.collection('botState').updateOne({}, { '$set': { choppingBlockSize: newSize } })
+  const update = db.collection('botState').updateOne({}, { '$set': { playlistSize: newSize } })
   return update;
 }

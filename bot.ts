@@ -12,8 +12,8 @@ of who added which songs.
 import SpotifyApi from './spotifyApi';
 import * as options from './options.json';
 import * as fs from 'fs';
-import { getDb, changeChoppingBlockSize } from './db';
-import { updatePlaylist } from './playlist';
+import { getDb, changePlaylistSize } from './db';
+import { updatePlaylist, getFullSpotifyPlaylist, removeSongs, addSongs, trimPlaylist } from './playlist';
 import { sendErrorEmail } from './email/sendEmail';
 import * as t from './types';
 
@@ -33,11 +33,13 @@ const spotifyApi = new SpotifyApi({
 const main = async () => {
   try {
     // await getAuth();
-    const insertions: any[] = [];
     const db = await getDb();
-    const update = await changeChoppingBlockSize(10);
-    const a = await db.collection('botState').findOne();
-    return { a, update };
+
+    const res = await changePlaylistSize(190);
+    // const res = await trimPlaylist(spotifyApi, options.playlistId, options.graveyardId);
+    return res;
+    // const rem = await removeSongs(spotifyApi, options.playlistId, options.graveyardId, [res[0]]);
+    // return { rem, res };
     // const current = (await db.collection('currentPlaylist').findOne()).currentList;
     // const playlist = await (await db.collection('songs').find({ 'track.id': { '$in': current } })).toArray();
     // return playlist;

@@ -113,6 +113,14 @@ class SpotifyApi extends SpotifyWebApi {
       return this.handleError(err, this.getTrack, [trackId]);
     }
   }
+
+  public getUserPlaylists = async (userId: string | number) => {
+    try {
+      return await super.getUserPlaylists(userId);
+    } catch (err) {
+      return this.handleError(err, this.getUserPlaylists, [userId]);
+    }
+  }
 }
 
 export default SpotifyApi;

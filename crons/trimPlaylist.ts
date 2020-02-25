@@ -18,7 +18,8 @@ const main = async (attempt: number) => {
     return;
   }
   try {
-    const res = await trimPlaylist(spotifyApi, options.playlistId);
+    console.log(`Attempt #${attempt}`);
+    const res = await trimPlaylist(spotifyApi, options.playlistId, options.graveyardId);
     closeDb();
     return res;
   } catch (e) {

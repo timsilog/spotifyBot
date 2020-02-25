@@ -1,59 +1,53 @@
 {
-  "a": {
-    "_id": "5e48f6b57cf576e42f019c61",
-    "choppingBlockSize": 10
-  },
-  "update": {
-    "result": {
-      "n": 1,
-      "nModified": 1,
-      "opTime": {
-        "ts": "6797329802312286210",
-        "t": 3
-      },
-      "electionId": "7fffffff0000000000000003",
-      "ok": 1,
-      "$clusterTime": {
-        "clusterTime": "6797329802312286210",
-        "signature": {
-          "hash": "gUAtI4ppm/XbpEaRNu9VXu45cQY=",
-          "keyId": "6784221648024240130"
-        }
-      },
-      "operationTime": "6797329802312286210"
-    },
-    "connection": {
-      "domain": null,
-      "_events": {},
-      "_eventsCount": 4,
-      "id": 1,
-      "address": "54.148.180.84:27017",
-      "bson": {},
-      "socketTimeout": 360000,
-      "monitorCommands": false,
-      "closed": false,
-      "destroyed": false,
-      "lastIsMasterMS": 38
-    },
-    "modifiedCount": 1,
-    "upsertedId": null,
-    "upsertedCount": 0,
-    "matchedCount": 1,
+  "result": {
     "n": 1,
     "nModified": 1,
     "opTime": {
-      "ts": "6797329802312286210",
+      "ts": "6797533151833882625",
       "t": 3
     },
     "electionId": "7fffffff0000000000000003",
     "ok": 1,
     "$clusterTime": {
-      "clusterTime": "6797329802312286210",
+      "clusterTime": "6797533151833882625",
       "signature": {
-        "hash": "gUAtI4ppm/XbpEaRNu9VXu45cQY=",
+        "hash": "HJpKhrSR1Khi5jNKfeZgSMdUbNY=",
         "keyId": "6784221648024240130"
       }
     },
-    "operationTime": "6797329802312286210"
-  }
+    "operationTime": "6797533151833882625"
+  },
+  "connection": {
+    "domain": null,
+    "_events": {},
+    "_eventsCount": 4,
+    "id": 1,
+    "address": "54.148.180.84:27017",
+    "bson": {},
+    "socketTimeout": 360000,
+    "monitorCommands": false,
+    "closed": false,
+    "destroyed": false,
+    "lastIsMasterMS": 38
+  },
+  "modifiedCount": 1,
+  "upsertedId": null,
+  "upsertedCount": 0,
+  "matchedCount": 1,
+  "n": 1,
+  "nModified": 1,
+  "opTime": {
+    "ts": "6797533151833882625",
+    "t": 3
+  },
+  "electionId": "7fffffff0000000000000003",
+  "ok": 1,
+  "$clusterTime": {
+    "clusterTime": "6797533151833882625",
+    "signature": {
+      "hash": "HJpKhrSR1Khi5jNKfeZgSMdUbNY=",
+      "keyId": "6784221648024240130"
+    }
+  },
+  "operationTime": "6797533151833882625"
 }
