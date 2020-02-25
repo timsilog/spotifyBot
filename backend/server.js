@@ -25,7 +25,11 @@ app.use(bodyParser.json());
 app.use('/', routes);
 
 routes.route('/').get(async (req, res) => {
-  const users = await (await db.collection('users').find()).toArray();
+  const userArr = await (await db.collection('users').find()).toArray();
+  const users = {};
+  for (const user of userArr) {
+    users[user.id] = user;
+  }
   const current = (await db.collection('currentPlaylist').findOne()).currentList;
   const playlist = await (await db.collection('songs').find({ 'track.id': { '$in': current } })).toArray();
   res.send({ users, playlist });

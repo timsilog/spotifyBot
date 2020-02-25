@@ -1,21 +1,24 @@
 import React, { Component } from 'react';
-import { User, PlaylistTrack } from '../../../types';
+import { User, PlaylistTrack, SongProps } from '../../../types';
 import Carousel from './carousel';
 import '../App.css';
 
-export default class Home extends Component {
+
+
+export default class Home extends Component<SongProps, {}> {
   state: {
-    users: User[],
+    users: {
+      [key: number]: User
+    },
     songs: PlaylistTrack[]
   } = {
-      users: [],
+      users: {},
       songs: []
     }
 
-  componentDidMount() {
-    fetch('http://localhost:4000/')
-      .then(res => res.json())
-      .then(data => this.setState({ users: data.users, songs: data.playlist }));
+  constructor(props: SongProps) {
+    super(props);
+    this.state = { users: props.users, songs: props.songs };
   }
 
   render() {
@@ -23,9 +26,7 @@ export default class Home extends Component {
       <div className="home">
         <h2>Recently Added</h2>
         {
-          this.state.songs.length
-            ? <Carousel songs={this.state.songs}></Carousel>
-            : 'Loading'
+          <Carousel songs={this.state.songs} users={this.state.users}></Carousel>
         }
       </div >
     )

@@ -50,8 +50,7 @@ export const addUser = async (spotifyApi: SpotifyApi, user: User) => {
   try {
     const spotifyUser = await spotifyApi.getUser(user.id);
     const a = await db.collection('users').insertOne({
-      name: spotifyUser.body.display_name,
-      ...user
+      name: spotifyUser.body,
     });
     return a;
   } catch (e) {
@@ -103,6 +102,7 @@ export const updatePlaylist = async (spotifyApi: SpotifyApi, playlistId: string)
     currentIds.push(song.track.id);
     if (!dbMap[song.track.id]) {
       newSongs.push(song);
+      await addUser(spotifyApi, song.added_by);
     }
   }
 

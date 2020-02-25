@@ -3,6 +3,7 @@ import * as options from './options.json';
 import * as readline from 'readline-sync';
 import * as fs from 'fs';
 import { sendErrorEmail } from './email/sendEmail';
+// import { User, Track } from './types';
 
 class SpotifyApi extends SpotifyWebApi {
   private scopes: string[];
@@ -75,7 +76,7 @@ class SpotifyApi extends SpotifyWebApi {
 
   public getPlaylistTracks = async (playlistId: string, options?: {}, callback?) => {
     try {
-      return super.getPlaylistTracks(playlistId, options, callback);
+      return await super.getPlaylistTracks(playlistId, options, callback);
     } catch (err) {
       return this.handleError(err, this.getPlaylistTracks, [playlistId, options, callback]);
     }
@@ -83,7 +84,7 @@ class SpotifyApi extends SpotifyWebApi {
 
   public addTracksToPlaylist = async (playlistId: string, tracks: string[], options?: {}, callback?: any) => {
     try {
-      return super.addTracksToPlaylist(playlistId, tracks, options, callback);
+      return await super.addTracksToPlaylist(playlistId, tracks, options, callback);
     } catch (err) {
       return this.handleError(err, this.addTracksToPlaylist, [playlistId, tracks, options, callback]);
     }
@@ -91,7 +92,7 @@ class SpotifyApi extends SpotifyWebApi {
 
   public removeTracksFromPlaylist = async (playlistId: string, uris: { uri: string, positions?: number[] }[], options?: {}, callback?: any) => {
     try {
-      return super.removeTracksFromPlaylist(playlistId, uris, options, callback);
+      return await super.removeTracksFromPlaylist(playlistId, uris, options, callback);
     } catch (err) {
       return this.handleError(err, this.removeTracksFromPlaylist, [playlistId, uris, options, callback]);
     }
@@ -99,7 +100,7 @@ class SpotifyApi extends SpotifyWebApi {
 
   public getUser = async (userId: string | number) => {
     try {
-      return super.getUser(userId);
+      return await super.getUser(userId);
     } catch (err) {
       return this.handleError(err, this.getUser, [userId]);
     }
@@ -107,7 +108,7 @@ class SpotifyApi extends SpotifyWebApi {
 
   public getTrack = async (trackId: string) => {
     try {
-      return super.getTrack(trackId);
+      return await super.getTrack(trackId);
     } catch (err) {
       return this.handleError(err, this.getTrack, [trackId]);
     }

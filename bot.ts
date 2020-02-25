@@ -15,7 +15,7 @@ import * as fs from 'fs';
 import { getDb } from './db';
 import { updatePlaylist } from './playlist';
 import { sendErrorEmail } from './email/sendEmail';
-
+import * as t from './types';
 
 const sampleSong: string = 'spotify:track:7oK9VyNzrYvRFo7nQEYkWN'; // Mr. Brightside
 
@@ -32,13 +32,22 @@ const spotifyApi = new SpotifyApi({
 
 const main = async () => {
   try {
-    //     await getAuth();
+    // await getAuth();
+    const insertions: any[] = [];
     const db = await getDb();
-    const current = (await db.collection('currentPlaylist').findOne()).currentList;
+    const users = await (await db.collection('users').find()).toArray();
+    for (const badUser of users) {
+      const user = badUser.body;
+      const u: any = await spotifyApi.getUser(user.id);
+      const us = u.body;
+      insertions.push(await db.collection('users').replaceOne({ 'body.id': user.id }, us));
+    }
+    return insertions;
+    // const current = (await db.collection('currentPlaylist').findOne()).currentList;
     // const playlist = await (await db.collection('songs').find({ 'track.id': { '$in': current } })).toArray();
     // return playlist;
-    const song = await db.collection('songs').findOne();
-    return song;
+    // const song = await db.collection('songs').findOne();
+    // return song;
   } catch (e) {
     console.log("ERROR");
     console.error(e);

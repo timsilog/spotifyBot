@@ -1,15 +1,29 @@
 export interface PlaylistTrack {
   added_at: Date,
-  added_by: User,
+  added_by: SimplifiedUser,
   is_local: boolean,
   primary_color: any, // not sure what this is
   track: Track,
 }
 
-export interface User {
+export interface SimplifiedUser {
   external_urls: any,
   href: string,
   id: number,
+  type: string,
+  uri: string,
+}
+
+export interface User {
+  display_name: string,
+  external_urls: any,
+  followers: {
+    href: any,
+    total: number
+  }
+  href: string,
+  id: number,
+  images: Image[],
   type: string,
   uri: string,
 }
@@ -66,4 +80,9 @@ export interface Image {
   height: number,
   url: string,
   width: number
+}
+
+export interface SongProps {
+  users: {},
+  songs: PlaylistTrack[]
 }
