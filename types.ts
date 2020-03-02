@@ -82,7 +82,3 @@ export interface Image {
   width: number
 }
 
-export interface SongProps {
-  users: {},
-  songs: PlaylistTrack[]
-}

@@ -34,8 +34,11 @@ const main = async () => {
   try {
     // await getAuth();
     const db = await getDb();
+    const songs = await (await db.collection('songs').find().skip(300).limit(50)).toArray();
+    return songs.length;
+    const res = await spotifyApi.getTrack('2JTB1XsGtI8waaIBarHaQs');
 
-    const res = await changePlaylistSize(190);
+    // const res = await changePlaylistSize(150);
     // const res = await trimPlaylist(spotifyApi, options.playlistId, options.graveyardId);
     return res;
     // const rem = await removeSongs(spotifyApi, options.playlistId, options.graveyardId, [res[0]]);

@@ -1,7 +1,7 @@
 import React from 'react';
-import { PlaylistTrack, User } from '../../../types';
-import HomeSong from './homeSong';
-import '../App.css'
+import { PlaylistTrack, User } from '../../../../types';
+import CarouselSong from './carouselSong';
+import './carousel.scss';
 
 interface CarouselProps {
   users: {},
@@ -61,7 +61,7 @@ export default class Carousel extends React.Component<CarouselProps, {}> {
       // 604800000 is 7 days in milliseconds
       if (now.getTime() - date.getTime() <= 604800000) {
         songs.push(
-          <HomeSong
+          <CarouselSong
             key={song.track.id}
             song={song}
             user={this.state.users[song.added_by.id]}

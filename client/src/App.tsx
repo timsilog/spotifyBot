@@ -1,82 +1,69 @@
 import React from 'react';
 // import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
-// import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import Users from './components/users';
-import Songs from './components/songs';
-import Home from './components/home';
-import icon from './img/spotifyIcon.png';
+import "./App.scss";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Users from './components/users/users';
+import Songs from './components/songs/songs';
+import Home from './components/home/home';
+import About from './components/about/about';
+import Navbar from './components/navbar/navbar';
 import { PlaylistTrack, User } from '../../types';
+
+const hash: { [key: string]: string } = window.location.hash
+  .substring(1)
+  .split("&")
+  .reduce((initial: { [key: string]: string }, item: string) => {
+    if (item) {
+      const parts: string[] = item.split("=");
+      initial[parts[0]] = decodeURIComponent(parts[1]);
+    }
+    return initial;
+  }, {});
+window.location.hash = "";
 
 class App extends React.Component {
   state: {
-    current: 'home' | 'users' | 'songs',
     users: {
       [key: number]: User
     },
-    songs: PlaylistTrack[]
+    songs: PlaylistTrack[],
+    playlistSize: number,
+    token: string,
   } = {
-      current: 'home',
       users: {},
-      songs: []
+      songs: [],
+      playlistSize: 0,
+      token: '',
     }
 
   componentDidMount() {
-    fetch('http://localhost:4000/')
+    const _token = hash.access_token;
+    fetch('http://localhost:4000/current')
       .then(res => res.json())
-      .then(data => this.setState({ users: data.users, songs: data.playlist }));
-  }
-
-  goToHome = () => {
-    this.setState({ current: 'home' });
-  }
-
-  goToUsers = () => {
-    this.setState({ current: 'users' });
-  }
-
-  goToSongs = () => {
-    this.setState({ current: 'songs' });
+      .then(data => this.setState({
+        users: data.users,
+        songs: data.playlist,
+        playlistSize: data.playlistSize,
+        token: _token,
+      }));
   }
 
   render() {
-    const nav =
-      <div className="my-nav-bg">
-        <nav className="my-nav">
-          <img src={icon} alt="spotify-icon" className="icon"></img>
-          <div className="home-link" onClick={() => this.goToHome()}>Community Collab Manager</div>
-          <div className="users-link" onClick={() => this.goToUsers()}>Users</div>
-          <div className="songs-link" onClick={() => this.goToSongs()}>Songs</div>
-        </nav>
-      </div>
-    switch (this.state.current) {
-      case 'home':
-        return (
-          <div className="my-container">
-            {nav}
-            {this.state.songs.length
-              ? <Home songs={this.state.songs} users={this.state.users} />
-              : <div className='navBar'><h2>Recently Added</h2></div>
-            }
-          </div>
-        );
-      case 'users':
-        return (
-          <div className="my-container">
-            {nav}
-            {/* <Songs songs={this.state.songs} users={this.state.users} /> */}
-            <Users />
-          </div>
-        );
-      case 'songs':
-        return (
-          <div className="my-container">
-            {nav}
-            {/* <Songs songs={this.state.songs} users={this.state.users} /> */}
-            <Songs />
-          </div>
-        );
-    }
+    return (
+      <Router>
+        <div className="my-container">
+          <Navbar token={this.state.token} />
+          <Route path="/" exact render={() => {
+            return this.state.songs.length
+              ? <Home songs={this.state.songs} users={this.state.users} playlistSize={this.state.playlistSize} />
+              : <div><Home songs={[]} users={{}} playlistSize={0} /></div>
+          }} />
+          <Route path="/users" render={() => <Users users={this.state.users} />} />
+          <Route path="/songs" render={() => <Songs />} />
+          <Route path="/about" render={() => <About />} />
+        </div>
+      </Router>
+    )
   }
 }
 

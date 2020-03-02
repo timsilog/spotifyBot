@@ -24,7 +24,7 @@ app.use(bodyParser.json());
 
 app.use('/', routes);
 
-routes.route('/').get(async (req, res) => {
+routes.route('/current').get(async (req, res) => {
   const userArr = await (await db.collection('users').find()).toArray();
   const users = {};
   for (const user of userArr) {
@@ -32,17 +32,28 @@ routes.route('/').get(async (req, res) => {
   }
   const current = (await db.collection('currentPlaylist').findOne()).currentList;
   const playlist = await (await db.collection('songs').find({ 'track.id': { '$in': current } })).toArray();
-  res.send({ users, playlist });
+  const playlistSize = (await db.collection('botState').findOne()).playlistSize;
+  res.send({ users, playlist, playlistSize });
 });
 
 routes.route('/users').get(async (req, res) => {
-  const users = await (await db.collection('users').find()).toArray();
+  const userArr = await (await db.collection('users').find()).toArray();
+  const users = {};
+  for (const user of userArr) {
+    users[user.id] = user;
+  }
   res.send(users);
 });
 
 routes.route('/songs').get(async (req, res) => {
-  const songs = await (await db.collection('songs').find()).toArray();
-  res.send(songs);
+  const size = await db.collection('songs').countDocuments();
+  const userArr = await (await db.collection('users').find()).toArray();
+  const users = {};
+  for (const user of userArr) {
+    users[user.id] = user;
+  }
+  const songs = await (await db.collection('songs').find().skip(req.query.offset ? parseInt(req.query.offset) : 0).limit(50)).toArray();
+  res.send({ users, size, songs });
 })
 
 
