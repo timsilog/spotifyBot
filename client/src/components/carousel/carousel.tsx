@@ -8,17 +8,18 @@ interface CarouselProps {
   songs: PlaylistTrack[]
 }
 
+interface CarouselState {
+  users: {
+    [key: number]: User
+  },
+  songs: PlaylistTrack[],
+  scrollIntervalId: NodeJS.Timeout | null,
+  playingSongs: number
+}
 export default class Carousel extends React.Component<CarouselProps, {}> {
   private myRef = React.createRef<HTMLDivElement>();
   private numSongs: number = 0;
-  state: {
-    users: {
-      [key: number]: User
-    },
-    songs: PlaylistTrack[],
-    scrollIntervalId: NodeJS.Timeout | null,
-    playingSongs: number
-  }
+  state: CarouselState;
 
   constructor(props: CarouselProps) {
     super(props);
@@ -49,6 +50,19 @@ export default class Carousel extends React.Component<CarouselProps, {}> {
         clearTimeout(this.state.scrollIntervalId);
       }
       this.setState({ scrollIntervalId: null, playingSongs: this.state.playingSongs + increment });
+    }
+  }
+
+  static getDerivedStateFromProps = (nextProps: CarouselProps, currentState: CarouselState) => {
+    if (nextProps.songs.length !== currentState.songs.length) {
+      return nextProps;
+    }
+    return null;
+  }
+
+  componentDidUpdate(prevProps: CarouselProps, currentState: CarouselState) {
+    if (this.props.songs.length !== currentState.songs.length) {
+      this.setState({ ...this.props });
     }
   }
 

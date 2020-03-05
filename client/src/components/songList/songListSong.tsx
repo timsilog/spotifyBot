@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { User, PlaylistTrack } from '../../../../types';
 import './songList.scss';
 import playButton from '../../img/playButton.png';
@@ -9,14 +10,16 @@ interface SongProps {
   num: number
 }
 
+interface SongListSongState {
+  user: User,
+  song: PlaylistTrack,
+  num: number,
+  audio: HTMLAudioElement,
+  isPlaying: boolean
+}
+
 export default class SongListSong extends Component<SongProps, {}> {
-  state: {
-    user: User,
-    song: PlaylistTrack,
-    num: number,
-    audio: HTMLAudioElement,
-    isPlaying: boolean
-  }
+  state: SongListSongState;
 
   constructor(props: SongProps) {
     super(props);
@@ -49,6 +52,19 @@ export default class SongListSong extends Component<SongProps, {}> {
     }
   }
 
+  static getDerivedStateFromProps = (nextProps: SongProps, currentState: SongListSongState) => {
+    if (nextProps.num !== currentState.num) {
+      return { num: nextProps.num };
+    }
+    return null;
+  }
+
+  componentDidUpdate(prevProps: SongProps, currentState: SongListSongState) {
+    if (this.props.num !== currentState.num) {
+      this.setState({ num: this.props.num });
+    }
+  }
+
   render() {
     // const now: Date = new Date();
     // const then: Date = new Date(this.state.song.added_at);
@@ -75,10 +91,14 @@ export default class SongListSong extends Component<SongProps, {}> {
         <div className="user-container">
           <div className="song-number">{this.state.num}</div>
           <div className="user-icon-container">
-            <img className="user-icon"
-              src={this.state.user.images[0].url}
-              alt={this.state.user.display_name}
-            />
+            <Link
+              to={`/users/${this.state.user.display_name}`}
+            >
+              <img className="user-icon"
+                src={this.state.user.images[0].url}
+                alt={this.state.user.display_name}
+              />
+            </Link>
           </div>
         </div>
         <div className="songlistsong-album">

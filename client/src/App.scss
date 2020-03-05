@@ -1,17 +1,22 @@
-$purple: rgb(138,99,144);
-$pink: rgb(164, 116, 170);
+$purple: rgb(108,79,114);
+$pink: rgb(174, 126, 180);
+$dark-purple: rgb(62, 47, 63);
+$green: #1DB954;
 
-html, body, #root, #root>div {
+html, body, #root {
   width: 100%;
   min-height: 100%;
   color: #ffffff;
   font-family: "Helvetica", "Arial", sans-serif;
-  background-image: linear-gradient(to bottom right, $pink, #101010);
+  background-image: linear-gradient(to bottom right, $pink, #201020);
   background-attachment: fixed;
   scroll-behavior: smooth;
 }
 
 .my-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   height: 100%;
 }

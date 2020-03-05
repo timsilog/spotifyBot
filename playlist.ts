@@ -54,9 +54,7 @@ export const addUser = async (spotifyApi: SpotifyApi, user: SimplifiedUser) => {
   }
   try {
     const spotifyUser = await spotifyApi.getUser(user.id);
-    const a = await db.collection('users').insertOne({
-      name: spotifyUser.body,
-    });
+    const a = await db.collection('users').insertOne(spotifyUser.body);
     return a;
   } catch (e) {
     console.log(`COULDN'T ADD USER`)

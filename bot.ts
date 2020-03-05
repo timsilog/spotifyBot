@@ -34,13 +34,52 @@ const main = async () => {
   try {
     // await getAuth();
     const db = await getDb();
-    const songs = await (await db.collection('songs').find().skip(300).limit(50)).toArray();
-    return songs.length;
-    const res = await spotifyApi.getTrack('2JTB1XsGtI8waaIBarHaQs');
+    // const songs = await (await db.collection('songs').find().skip(300).limit(50)).toArray();
+    // const removeMe = [
+    //   '5e5f21e7b771091551db9d6a',
+    //   '5e5f21e7b771091551db9d6b',
+    //   '5e5f21e7b771091551db9d6c',
+    //   '5e5f231328bffc1565c3b836',
+    //   '5e5f231328bffc1565c3b836',
+    // ]
+    // const removals = [];
+    // for (const id of removeMe) {
+    //   const removal = await db.collection('users').removeOne({ _id: id });
+    //   removals.push(removal);
+    // }
+    // return removals;
+    // const temp = await db.collection('users').remove({ 'name.id': '12160901527' });
+    // return temp;
+    const insertMe = {
+      "display_name": "Shine Hsiao",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/user/12160901527"
+      },
+      "followers": {
+        "href": null,
+        "total": 29
+      },
+      "href": "https://api.spotify.com/v1/users/12160901527",
+      "id": "12160901527",
+      "images": [
+        {
+          "height": null,
+          "url": "https://scontent.xx.fbcdn.net/v/t1.0-1/p320x320/66780962_10157202927526217_5898749041134534656_o.jpg?_nc_cat=107&_nc_sid=0c64ff&_nc_ohc=9zE_XjNs6u0AX_4mIFG&_nc_ht=scontent.xx&_nc_tp=6&oh=35d7f39f12be4965e5a784d921c2be0d&oe=5E96844A",
+          "width": null
+        }
+      ],
+      "type": "user",
+      "uri": "spotify:user:12160901527"
+    }
+    // const check = await db.collection('users').insertOne(insertMe);
+    const check = await db.collection('users').findOne({ id: '12160901527' });
+    return check;
+    // return await check.toArray()
+    // const res = await spotifyApi.getTrack('2JTB1XsGtI8waaIBarHaQs');
 
     // const res = await changePlaylistSize(150);
     // const res = await trimPlaylist(spotifyApi, options.playlistId, options.graveyardId);
-    return res;
+    // return res;
     // const rem = await removeSongs(spotifyApi, options.playlistId, options.graveyardId, [res[0]]);
     // return { rem, res };
     // const current = (await db.collection('currentPlaylist').findOne()).currentList;

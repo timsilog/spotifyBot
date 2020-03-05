@@ -1,4 +1,5 @@
 export interface PlaylistTrack {
+  _id: string,
   added_at: Date,
   added_by: SimplifiedUser,
   is_local: boolean,

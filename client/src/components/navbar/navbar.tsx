@@ -56,31 +56,33 @@ export default class Navbar extends Component<{ token: string }, {}> {
 
   render() {
     return (
-      <nav className="my-nav">
-        <div className="my-nav-left">
-          <img src={icon} alt="spotify-icon" className="icon"></img>
-          <Link to="/" className="home-link">Community Collab Manager</Link>
-        </div>
-        <div className="my-nav-right">
-          <Link to="/users" className="users-link" >Users</Link>
-          <Link to="/songs" className="songs-link" > Songs</Link>
-          <Link to="/about" className="about-link" > About</Link>
-          {
-            this.state.token && this.state.user
-              ? <div className="user-image-container"><img
-                className="user-image"
-                src={this.state.user.images[0].url}
-                alt={this.state.user.display_name}
-              /></div>
-              : <a
-                className="login-button"
-                href={`${authEndpoint}client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join("%20")}&response_type=token&show_dialog=true`}
-              >
-                Login
+      <div className="nav-container">
+        <nav className="my-nav">
+          <div className="my-nav-left">
+            <img src={icon} alt="spotify-icon" className="icon"></img>
+            <Link to="/" className="home-link">Community Collab Manager</Link>
+          </div>
+          <div className="my-nav-right">
+            <Link to="/users" className="users-link" >Users</Link>
+            <Link to="/songs" className="songs-link" > Songs</Link>
+            <Link to="/about" className="about-link" > About</Link>
+            {
+              this.state.token && this.state.user
+                ? <div className="user-image-container"><img
+                  className="user-image"
+                  src={this.state.user.images[0].url}
+                  alt={this.state.user.display_name}
+                /></div>
+                : <a
+                  className="login-button"
+                  href={`${authEndpoint}client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join("%20")}&response_type=token&show_dialog=true`}
+                >
+                  Login
             </a>
-          }
-        </div>
-      </nav>
+            }
+          </div>
+        </nav>
+      </div>
     )
   }
 }

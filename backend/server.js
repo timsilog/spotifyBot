@@ -31,9 +31,9 @@ routes.route('/current').get(async (req, res) => {
     users[user.id] = user;
   }
   const current = (await db.collection('currentPlaylist').findOne()).currentList;
-  const playlist = await (await db.collection('songs').find({ 'track.id': { '$in': current } })).toArray();
-  const playlistSize = (await db.collection('botState').findOne()).playlistSize;
-  res.send({ users, playlist, playlistSize });
+  const songs = await (await db.collection('songs').find({ 'track.id': { '$in': current } })).toArray();
+  const desiredPlaylistSize = (await db.collection('botState').findOne()).playlistSize;
+  res.send({ users, songs, desiredPlaylistSize });
 });
 
 routes.route('/users').get(async (req, res) => {
@@ -45,15 +45,34 @@ routes.route('/users').get(async (req, res) => {
   res.send(users);
 });
 
+/*
+req params:
+offset
+reverse
+no_limit
+user_id
+*/
 routes.route('/songs').get(async (req, res) => {
-  const size = await db.collection('songs').countDocuments();
   const userArr = await (await db.collection('users').find()).toArray();
   const users = {};
   for (const user of userArr) {
     users[user.id] = user;
   }
-  const songs = await (await db.collection('songs').find().skip(req.query.offset ? parseInt(req.query.offset) : 0).limit(50)).toArray();
-  res.send({ users, size, songs });
+  const query = {};
+  if (req.query.user_id) {
+    query['added_by.id'] = `${req.query.user_id}`;
+  }
+  const size = await db.collection('songs').countDocuments(query);
+  let songs;
+  const sortOrder = req.query.reverse === 'true'
+    ? { '$natural': -1 }
+    : { '$natural': 1 };
+  if (req.query.no_limit === 'true') {
+    songs = await (await db.collection('songs').find(query).sort(sortOrder).skip(req.query.offset ? parseInt(req.query.offset) : 0)).toArray();
+  } else {
+    songs = await (await db.collection('songs').find(query).sort(sortOrder).skip(req.query.offset ? parseInt(req.query.offset) : 0).limit(50)).toArray();
+  }
+  res.send({ size, users, songs });
 })
 
 

@@ -1,19 +1,22 @@
 .home {
   display: flex;
   flex-direction: column;
-  width: 100%;
-}
-
-.title {
-  font-weight: bold;
-  font-size: 2.3em;
-  margin-top: 2%;
-  margin-bottom: 1%;
-  margin-left: 1%;
-  overflow: hidden;
-}
-
-.gray-text {
-  margin-left: 1%;
-  color: #CCCCCC;
+  align-items: center;
+  width: 65%;
+  @media (max-width: 1440px) {
+    width: 90%;
+  }
+  .title {
+    width: 100%;
+    font-weight: bold;
+    font-size: 2.3em;
+    margin-top: 2%;
+    margin-bottom: 1%;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .gray-text {
+    width: 100%;
+    color: #CCCCCC;
+  }
 }

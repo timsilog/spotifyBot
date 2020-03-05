@@ -27,12 +27,12 @@ class App extends React.Component {
       [key: number]: User
     },
     songs: PlaylistTrack[],
-    playlistSize: number,
+    desiredPlaylistSize: number,
     token: string,
   } = {
       users: {},
       songs: [],
-      playlistSize: 0,
+      desiredPlaylistSize: 0,
       token: '',
     }
 
@@ -42,8 +42,8 @@ class App extends React.Component {
       .then(res => res.json())
       .then(data => this.setState({
         users: data.users,
-        songs: data.playlist,
-        playlistSize: data.playlistSize,
+        songs: data.songs.sort((a: PlaylistTrack, b: PlaylistTrack) => a._id < b._id ? -1 : 1),
+        desiredPlaylistSize: data.desiredPlaylistSize,
         token: _token,
       }));
   }
@@ -53,12 +53,8 @@ class App extends React.Component {
       <Router>
         <div className="my-container">
           <Navbar token={this.state.token} />
-          <Route path="/" exact render={() => {
-            return this.state.songs.length
-              ? <Home songs={this.state.songs} users={this.state.users} playlistSize={this.state.playlistSize} />
-              : <div><Home songs={[]} users={{}} playlistSize={0} /></div>
-          }} />
-          <Route path="/users" render={() => <Users users={this.state.users} />} />
+          <Route path="/" exact render={() => <Home songs={this.state.songs} users={this.state.users} desiredPlaylistSize={this.state.desiredPlaylistSize} />} />
+          <Route path="/users" render={() => <Users users={this.state.users} currentSongs={this.state.songs} />} />
           <Route path="/songs" render={() => <Songs />} />
           <Route path="/about" render={() => <About />} />
         </div>

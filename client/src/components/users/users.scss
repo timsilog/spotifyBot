@@ -4,71 +4,179 @@ $half-pink: rgba(164, 116, 170, .6);
 
 .users-container {
   position: relative;
-  height: 3.5em;
+  height: 100%;
   width: 100%;
-  background-color: rgba(14, 14, 14, .2);
-  border-bottom: 1px solid rgba(14, 14, 14, .3);
-  box-shadow: 0px 3px 5px -5px black;
 }
 
 .users-bar-content {
-  height: 100%;
+  top: 5.5em;
+  position: -webkit-sticky;
+  position: sticky;
+  height: 3.5em;
   width: 100%;
+  background-color: $purple;
+  border-top: 1px solid rgba(14, 14, 14, .3);
+  border-bottom: 1px solid rgba(14, 14, 14, .3);
+  box-shadow: 0px 3px 5px -5px black;
   display: flex;
   align-items: center;
+  z-index: 5;
+  .dropdown-button {
+    padding: .5%;
+    border-radius: 5px;
+    margin-left: 2%;
+    margin-right: 1%;
+    display: flex;
+    align-items: center;
+    &:hover {
+      background-color: $half-pink;
+      cursor: pointer;
+    }
+    .users-text {
+      font-size: 1.2em;
+    }
+    .down-button {
+      width: 1.5em;
+      height: 1.5em;
+      margin-bottom: .5em;
+    }
+  }
+  .vertical-line {
+    background-color: rgba(14, 14, 14, .3);
+    width: 1px;
+    height: 60%;
+  }
+  .user-menu {
+    margin-left: 2%;
+  }
 }
-
-.dropdown-button {
-  padding: .5%;
-  border-radius: 5px;
-  margin-left: 2%;
-  margin-right: 1%;
-  display: flex;
-  align-items: center;
-  &:hover {
-    background-color: $half-pink;
-    cursor: pointer;
-  }
-  .users-text {
-    font-size: 1.2em;
-  }
-  .down-button {
-    width: 1.5em;
-    height: 1.5em;
-    margin-bottom: .5em;
-  }
   
-}
-
-.vertical-line {
-  background-color: rgba(14, 14, 14, .3);
-  width: 1px;
-  height: 60%;
+.select {
+  margin: 2%;
+  font-size: 2em;
 }
 
 .dropdown-hidden {
   display: none;
 }
-
-// .dropdown-showing {
-//   display: block;
-// }
-
+  
 .dropdown-showing {
-  position: absolute;
-  top: 3.2em;
+  position: sticky;
+  z-index: 100;
+  top: 8.7em;
   margin-left: 2%;
+  .dropdown-content-container {
+    position: absolute;
+    width: 15em;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(14, 14, 14, .3);
+    border-radius: 5px;
+    background-color: $purple;
+    overflow: scroll;
+    .dropdown-content-item {
+      white-space: nowrap;
+      padding: 5%;
+      &:hover {
+        background-color: $half-pink;
+      }
+    }
+  }
+}
+
+.user-profile-container {
+
+}
+
+.profile-header {
+  display: flex;
+  .profile-pic {
+    margin-left: 5%;
+    margin-top: 3%;
+    margin-right: 2%;
+    margin-bottom: 3%;
+    border-radius: 50%;
+    width: 10em;
+    height: 10em;
+  }
+  .user-name-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .small-text {
+      margin-left: 1%;
+      font-size: 1em;
+    }
+    .user-name {
+      font-size: 3em;
+      align-self: center;
+    }
+    .user-stats {
+      margin: 1%;
+    }
+  }
+}
+
+.user-graphs-container {
   display: flex;
   flex-direction: column;
-  border: 1px solid rgba(14, 14, 14, .3);
-  border-radius: 5px;
-  background-color: $purple;
+  align-items: center;
+  justify-content: center;
+}
+
+.graph-container {
+  width: 80%;
+  // height: 20em;
+  background-color: rgba(14, 14, 14, .3);
   overflow: scroll;
-  .dropdown-content-item {
-    white-space: nowrap;
-    padding: 5%;
-    &:hover {
-      background-color: $half-pink;
+  box-shadow: .5px .5px 5px black;
+  .graph-bar-container {
+    height: 2.5em;
+    margin-top: .2em;
+    margin-bottom: .2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .graph-bar {
+      position: relative;
+      height: 4px;
+      background-color: white;
+      width: 100%;
+      min-width: 2.5em;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      animation: move-bar ease 2s;
+      @keyframes move-bar {
+        from {
+          transform: translateX(-100%);
+        }
+      }
+      &:hover > .graph-bar-link > .graph-bar-count {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .graph-bar-img {
+        height: 2.5em;
+        width: 2.5em;
+        border-radius: 50%;
+      }
+      .graph-bar-link {
+
+        position: absolute;
+        height: 2.5em;
+        width: 2.5em;
+        border-radius: 50%;
+        .graph-bar-count {
+          height: 100%;
+          width: 100%;
+          border-radius: 50%;
+          background-color: rgba(14, 14, 14, .7);
+          cursor: pointer;
+          display: none;
+        }
+      }
     }
   }
 }
