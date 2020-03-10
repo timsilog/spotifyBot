@@ -1,3 +1,72 @@
-h1 {
-  margin-left: 2%;
+@import '../../App.scss';
+
+.song-history-container {
+  width: 65%;
+  @media (max-width: 1440px) {
+    width: 90%;
+  }
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+  h1 {
+    margin-left: 2%;
+  }
+
+  .users-bar-container {
+    width: 100%;
+    background-color: $purple;
+    border-top: 1px solid rgba(14, 14, 14, .3);
+    border-bottom: 1px solid rgba(14, 14, 14, .3);
+    box-shadow: 0px 3px 5px -5px black;
+    height: 3.5em;
+    display: flex;
+    justify-content: center;
+    top: 5.5em;
+    position: -webkit-sticky;
+    position: sticky;
+    z-index: 5;
+    .users-bar-content {
+      width: 65%;
+      @media (max-width: 1440px) {
+        width: 90%;
+      }
+      display: flex;
+      align-items: center;
+      .dropdown-button {
+        padding: .5%;
+        border-radius: 5px;
+        margin-left: 2%;
+        margin-right: 1%;
+        display: flex;
+        align-items: center;
+        &:hover {
+          background-color: $half-pink;
+          cursor: pointer;
+        }
+        .users-text {
+          font-size: 1.2em;
+        }
+        .down-button {
+          width: 1.5em;
+          height: 1.5em;
+          margin-bottom: .5em;
+        }
+      }
+      .vertical-line {
+        background-color: rgba(14, 14, 14, .3);
+        width: 1px;
+        height: 60%;
+      }
+      .user-menu {
+        margin-left: 2%;
+      }
+    }
+  }
+}
+
+.loader-container {
+  display: flex;
+  width: 100%;
+  // align-items: center;
+  justify-content: center;
 }

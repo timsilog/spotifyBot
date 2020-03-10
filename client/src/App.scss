@@ -1,9 +1,11 @@
 $purple: rgb(108,79,114);
 $pink: rgb(174, 126, 180);
+$half-pink: rgba(164, 116, 170, .6);
 $dark-purple: rgb(62, 47, 63);
 $green: #1DB954;
 
-html, body, #root {
+body, #root {
+  margin: 0 auto;
   width: 100%;
   min-height: 100%;
   color: #ffffff;
@@ -11,6 +13,8 @@ html, body, #root {
   background-image: linear-gradient(to bottom right, $pink, #201020);
   background-attachment: fixed;
   scroll-behavior: smooth;
+  // box-sizing: border-box;
+  // overflow: scroll;
 }
 
 .my-container {

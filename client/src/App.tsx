@@ -51,12 +51,12 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <div className="my-container">
+        <div className='my-container' >
           <Navbar token={this.state.token} />
           <Route path="/" exact render={() => <Home songs={this.state.songs} users={this.state.users} desiredPlaylistSize={this.state.desiredPlaylistSize} />} />
           <Route path="/users" render={() => <Users users={this.state.users} currentSongs={this.state.songs} />} />
           <Route path="/songs" render={() => <Songs />} />
-          <Route path="/about" render={() => <About />} />
+          <Route path="/about" render={() => <About songs={this.state.songs} />} />
         </div>
       </Router>
     )

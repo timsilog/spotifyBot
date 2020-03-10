@@ -26,7 +26,7 @@ export default class CarouselSong extends React.Component<SongProps, {}> {
       isPlaying: false,
       songChange: props.songChange
     };
-    this.state.audio.volume = .3;
+    this.state.audio.volume = .5;
     this.state.audio.onended = this.handleAudioOff;
     this.state.audio.onpause = this.handleAudioOff;
     this.state.audio.onplay = this.handleAudioOn;

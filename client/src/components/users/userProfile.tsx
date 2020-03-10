@@ -89,7 +89,7 @@ export default class UserProfile extends Component<UserProfileProps, {}> {
 
   render() {
     if (!this.state.user) {
-      return <div>Select a User</div>
+      return <div></div>
     }
     return (
       <div className='user-profile-container'>
@@ -99,18 +99,20 @@ export default class UserProfile extends Component<UserProfileProps, {}> {
             className='profile-pic'
             alt={this.state.user.display_name} />
           <div className='user-name-container'>
-            <div className='small-text'>Contributor</div>
+            <div>Contributor</div>
             <div className='user-name'>{this.state.user.display_name}</div>
-            <div className='user-stats'>
+            <div>
               Number of songs: {this.state.playlistSize && this.state.songs && this.state.playlistSize === this.state.songs.length ? this.state.playlistSize : ''}
             </div>
           </div>
         </div>
-        {
-          this.state.songs.length
-            ? <SongList users={this.state.users} songs={this.state.songs} />
-            : <div></div>
-        }
+        <div className="user-songs">
+          {
+            this.state.songs.length
+              ? <SongList users={this.state.users} songs={this.state.songs} />
+              : <div></div>
+          }
+        </div>
       </div>
     )
   }

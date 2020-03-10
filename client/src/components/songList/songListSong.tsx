@@ -30,7 +30,7 @@ export default class SongListSong extends Component<SongProps, {}> {
       audio: new Audio(props.song.track.preview_url),
       isPlaying: false
     };
-    this.state.audio.volume = .3;
+    this.state.audio.volume = .5;
     this.state.audio.onended = this.handleAudioOff;
     this.state.audio.onpause = this.handleAudioOff;
     this.state.audio.onplay = this.handleAudioOn;
@@ -62,6 +62,12 @@ export default class SongListSong extends Component<SongProps, {}> {
   componentDidUpdate(prevProps: SongProps, currentState: SongListSongState) {
     if (this.props.num !== currentState.num) {
       this.setState({ num: this.props.num });
+    }
+  }
+
+  private openSpotify = () => {
+    if (window.confirm('Would you like to open Spotify in a new tab?')) {
+      window.open(this.state.song.track.external_urls.spotify);
     }
   }
 
@@ -114,7 +120,7 @@ export default class SongListSong extends Component<SongProps, {}> {
           </div>
         </div>
         {/* <div className="split-me"> */}
-        <div className="song-stack">
+        <div className="song-stack" onClick={this.openSpotify}>
           <div className="hide-overflow">{this.state.song.track.name}</div>
           <div className="hide-overflow">{this.state.song.track.artists.map(artist => artist.name).join(', ')}</div>
         </div>

@@ -1,53 +1,65 @@
 @import "../../App.scss";
 
-$half-pink: rgba(164, 116, 170, .6);
-
 .users-container {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   height: 100%;
   width: 100%;
 }
 
-.users-bar-content {
-  top: 5.5em;
-  position: -webkit-sticky;
-  position: sticky;
-  height: 3.5em;
+.users-bar-container {
   width: 100%;
   background-color: $purple;
   border-top: 1px solid rgba(14, 14, 14, .3);
   border-bottom: 1px solid rgba(14, 14, 14, .3);
   box-shadow: 0px 3px 5px -5px black;
+  height: 3.5em;
   display: flex;
-  align-items: center;
+  justify-content: center;
+  top: 5.5em;
+  position: -webkit-sticky;
+  position: sticky;
   z-index: 5;
-  .dropdown-button {
-    padding: .5%;
-    border-radius: 5px;
-    margin-left: 2%;
-    margin-right: 1%;
+  .users-bar-content {
+    width: 65%;
+    @media (max-width: 1440px) {
+      width: 90%;
+    }
+    @media (max-width: 768px) {
+      width: 100%;
+    }
     display: flex;
     align-items: center;
-    &:hover {
-      background-color: $half-pink;
-      cursor: pointer;
+    .dropdown-button {
+      padding: .5%;
+      border-radius: 5px;
+      margin-left: 2%;
+      margin-right: 1%;
+      display: flex;
+      align-items: center;
+      &:hover {
+        background-color: $half-pink;
+        cursor: pointer;
+      }
+      .users-text {
+        font-size: 1.2em;
+      }
+      .down-button {
+        width: 1.5em;
+        height: 1.5em;
+        margin-bottom: .5em;
+      }
     }
-    .users-text {
-      font-size: 1.2em;
+    .vertical-line {
+      background-color: rgba(14, 14, 14, .3);
+      width: 1px;
+      height: 60%;
     }
-    .down-button {
-      width: 1.5em;
-      height: 1.5em;
-      margin-bottom: .5em;
+    .user-menu {
+      margin-left: 2%;
     }
-  }
-  .vertical-line {
-    background-color: rgba(14, 14, 14, .3);
-    width: 1px;
-    height: 60%;
-  }
-  .user-menu {
-    margin-left: 2%;
   }
 }
   
@@ -61,10 +73,14 @@ $half-pink: rgba(164, 116, 170, .6);
 }
   
 .dropdown-showing {
+  align-self: flex-start;
   position: sticky;
   z-index: 100;
   top: 8.7em;
-  margin-left: 2%;
+  margin-left: 19%;
+  @media (max-width: 1440px) {
+    margin-left: 6.75%;
+  }
   .dropdown-content-container {
     position: absolute;
     width: 15em;
@@ -84,99 +100,61 @@ $half-pink: rgba(164, 116, 170, .6);
   }
 }
 
-.user-profile-container {
-
-}
-
-.profile-header {
+.user-content-container {
   display: flex;
-  .profile-pic {
-    margin-left: 5%;
-    margin-top: 3%;
-    margin-right: 2%;
-    margin-bottom: 3%;
-    border-radius: 50%;
-    width: 10em;
-    height: 10em;
+  justify-content: center;
+  width: 65%;
+  @media (max-width: 1440px) {
+    width: 90%;
   }
-  .user-name-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    .small-text {
-      margin-left: 1%;
-      font-size: 1em;
-    }
-    .user-name {
-      font-size: 3em;
-      align-self: center;
-    }
-    .user-stats {
-      margin: 1%;
-    }
+  @media (max-width: 768px) {
+    width: 100%;
   }
 }
+
+.user-profile-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  .profile-header {
+    display: flex;
+    @media (max-width: 450px) {
+      flex-direction: column;
+      align-items: center;
+    }
+    .profile-pic {
+      margin: 4%;
+      border-radius: 50%;
+      width: 10em;
+      height: 10em;
+    }
+    .user-name-container{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-self: center;
+      .user-name {
+        font-size: 3em;
+        @media (max-width: 450px) {
+          font-size: 2em;
+        }
+      }
+    }
+  }
+  .user-songs {
+    width: 90%;
+    align-self: center;
+  }
+}
+
 
 .user-graphs-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-}
-
-.graph-container {
-  width: 80%;
-  // height: 20em;
-  background-color: rgba(14, 14, 14, .3);
-  overflow: scroll;
-  box-shadow: .5px .5px 5px black;
-  .graph-bar-container {
-    height: 2.5em;
-    margin-top: .2em;
-    margin-bottom: .2em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    .graph-bar {
-      position: relative;
-      height: 4px;
-      background-color: white;
-      width: 100%;
-      min-width: 2.5em;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      animation: move-bar ease 2s;
-      @keyframes move-bar {
-        from {
-          transform: translateX(-100%);
-        }
-      }
-      &:hover > .graph-bar-link > .graph-bar-count {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .graph-bar-img {
-        height: 2.5em;
-        width: 2.5em;
-        border-radius: 50%;
-      }
-      .graph-bar-link {
-
-        position: absolute;
-        height: 2.5em;
-        width: 2.5em;
-        border-radius: 50%;
-        .graph-bar-count {
-          height: 100%;
-          width: 100%;
-          border-radius: 50%;
-          background-color: rgba(14, 14, 14, .7);
-          cursor: pointer;
-          display: none;
-        }
-      }
-    }
+  width: 90%;
+  h2 {
+    margin-left: 1%;
   }
 }

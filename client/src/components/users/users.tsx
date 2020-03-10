@@ -85,25 +85,23 @@ export default class Users extends Component<UserProps, {}> {
   }
 
   render() {
-    if (!this.state.users || !Object.keys(this.state.users).length) {
-      return <div>loading</div>
-    } else {
-      return (
-        <div className="users-container">
-          <div className={this.state.usersShowing}>
-            <div className='dropdown-content-container'>
-              {
-                Object.values(this.state.users).map(user =>
-                  <Link
-                    to={`/users/${user.display_name}`}
-                    className="dropdown-content-item"
-                    key={user.display_name} >
-                    {user.display_name}
-                  </Link>
-                )
-              }
-            </div>
+    return (
+      <div className="users-container">
+        <div className={this.state.usersShowing}>
+          <div className='dropdown-content-container'>
+            {
+              Object.values(this.state.users).map(user =>
+                <Link
+                  to={`/users/${user.display_name}`}
+                  className="dropdown-content-item"
+                  key={user.display_name} >
+                  {user.display_name}
+                </Link>
+              )
+            }
           </div>
+        </div>
+        <div className="users-bar-container">
           <div className="users-bar-content">
             <div className="dropdown-button" onClick={this.toggleUsersShowing} ref={this.dropdownRef}>
               <div className="users-text">Users</div>
@@ -112,6 +110,8 @@ export default class Users extends Component<UserProps, {}> {
             <div className="vertical-line"></div>
             <div className="user-menu">{this.state.currentUser ? this.state.currentUser.display_name.split(' ')[0] : ''}</div>
           </div>
+        </div>
+        <div className='user-content-container'>
           {this.state.currentUser ? '' :
             <div className='user-graphs-container'>
               <h2>All Time{this.state.songs.length ? ` - ${this.state.songs.length} songs` : ''}</h2>
@@ -121,19 +121,17 @@ export default class Users extends Component<UserProps, {}> {
               <UserGraph users={this.state.users} songs={this.state.currentSongs} />
             </div>
           }
-          {
-            <Route
-              path={`/users/:username`}
-              render={({ match }) =>
-                <UserProfile
-                  user={Object.values(this.state.users).find(user => user.display_name === match.params.username)}
-                  setCurrentUser={this.setCurrentUser}
-                />
-              }
-            />
-          }
-        </div >
-      )
-    }
+          <Route
+            path={`/users/:username`}
+            render={({ match }) =>
+              <UserProfile
+                user={Object.values(this.state.users).find(user => user.display_name === match.params.username)}
+                setCurrentUser={this.setCurrentUser}
+              />
+            }
+          />
+        </div>
+      </div>
+    )
   }
 }

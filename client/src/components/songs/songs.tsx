@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { User, PlaylistTrack } from '../../../../types';
 import SongList from '../songList/songList';
 import './songs.scss';
+import Loader from 'react-loader-spinner';
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 export default class Songs extends Component {
   private OFFSET: number = 50;
@@ -66,12 +68,22 @@ export default class Songs extends Component {
 
   render() {
     return (
-      <div>
+      <div className='song-history-container'>
         <h1>Song History</h1>
         {
           this.state.songs.length
             ? <SongList songs={this.state.songs} users={this.state.users} />
             : <div><SongList songs={[]} users={{}} /></div>
+        }
+        {
+          this.state.isLoading
+            ? <div className='loader-container'>
+              <Loader type='TailSpin'
+                color='#ffffff'
+                height={40}
+                width={40}
+              /></div>
+            : ''
         }
       </div >
     )
