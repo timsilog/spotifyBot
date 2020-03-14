@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { User, PlaylistTrack } from '../../../../types';
+import { User, PlaylistTrack } from '../../../../backend/types';
 import { Link } from 'react-router-dom';
 import './userGraph.scss';
 

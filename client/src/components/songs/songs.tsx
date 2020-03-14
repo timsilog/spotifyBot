@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { User, PlaylistTrack } from '../../../../types';
+import { User, PlaylistTrack } from '../../../../backend/types';
 import SongList from '../songList/songList';
 import './songs.scss';
 import Loader from 'react-loader-spinner';
@@ -35,7 +35,7 @@ export default class Songs extends Component {
 
   private getSongs = (offset: number) => {
     this.setState({ isLoading: true }, () => {
-      fetch(`http://localhost:4000/songs?offset=${offset}`)
+      fetch(`https://1ramm3udm8.execute-api.us-west-1.amazonaws.com/latest/songs?offset=${offset}`)
         .then(res => res.json())
         .then(data => {
           const songs = this.getSortedPlaylist(data.songs);

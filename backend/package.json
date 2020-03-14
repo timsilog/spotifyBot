@@ -1,11 +1,15 @@
 {
+  "name": "my-api",
+  "version": "1.0.0",
   "dependencies": {
+    "@babel/polyfill": "^7.8.7",
     "@types/chai": "^4.2.9",
     "@types/es6-promise": "^3.3.0",
     "@types/expect": "^24.3.0",
     "@types/mocha": "^7.0.1",
     "@types/node": "^13.5.0",
     "@types/nodemailer": "^6.4.0",
+    "aws-serverless-express": "^3.3.6",
     "body-parser": "^1.19.0",
     "chai": "^4.2.0",
     "cors": "^2.8.5",
@@ -21,6 +25,15 @@
     "typescript": "^3.7.5"
   },
   "scripts": {
-    "test": "mocha -r ts-node/register tests/**/*.spec.ts"
+    "test": "mocha -r ts-node/register tests/**/*.spec.ts",
+    "init-claudia": "claudia generate-serverless-express-proxy --express-module server",
+    "create-api": "claudia create --handler lambda.handler --deploy-proxy-api --region us-west-1 --set-env-from-json ./options.json",
+    "update-api": "claudia update"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.7",
+    "@babel/preset-env": "^7.8.7",
+    "claudia": "^5.12.0"
   }
 }

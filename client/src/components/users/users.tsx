@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom';
-import { User, PlaylistTrack } from '../../../../types';
+import { User, PlaylistTrack } from '../../../../backend/types';
 import UserProfile from './userProfile';
 import UserGraph from './userGraph';
 import './users.scss';
@@ -30,12 +30,12 @@ export default class Users extends Component<UserProps, {}> {
 
   componentDidMount() {
     if (!Object.keys(this.state.users).length) {
-      fetch(`http://localhost:4000/current`)
+      fetch(`https://1ramm3udm8.execute-api.us-west-1.amazonaws.com/latest/current`)
         .then(res => res.json())
         .then(data => this.setState({ users: data.users, currentSongs: data.songs }));
     }
     if (!this.state.songs.length) {
-      fetch(`http://localhost:4000/songs?no_limit=true`)
+      fetch(`https://1ramm3udm8.execute-api.us-west-1.amazonaws.com/latest/songs?no_limit=true`)
         .then(res => res.json())
         .then(data => this.setState({ songs: data.songs }));
     }

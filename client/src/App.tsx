@@ -7,7 +7,7 @@ import Songs from './components/songs/songs';
 import Home from './components/home/home';
 import About from './components/about/about';
 import Navbar from './components/navbar/navbar';
-import { PlaylistTrack, User } from '../../types';
+import { PlaylistTrack, User } from '../../backend/types';
 
 const hash: { [key: string]: string } = window.location.hash
   .substring(1)
@@ -38,7 +38,7 @@ class App extends React.Component {
 
   componentDidMount() {
     const _token = hash.access_token;
-    fetch('http://localhost:4000/current')
+    fetch('https://1ramm3udm8.execute-api.us-west-1.amazonaws.com/latest/current')
       .then(res => res.json())
       .then(data => this.setState({
         users: data.users,

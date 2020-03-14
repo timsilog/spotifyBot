@@ -1,5 +1,5 @@
 import React from 'react';
-import { PlaylistTrack, User } from '../../../../types';
+import { PlaylistTrack, User } from '../../../../backend/types';
 import playButton from '../../img/playButton.png';
 
 interface SongProps {

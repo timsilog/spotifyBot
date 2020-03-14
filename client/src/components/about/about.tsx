@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { PlaylistTrack } from '../../../../types';
+import { PlaylistTrack } from '../../../../backend/types';
 import './about.scss'
 interface AboutProps {
   songs: PlaylistTrack[],

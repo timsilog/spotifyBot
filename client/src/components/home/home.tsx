@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { User, PlaylistTrack } from '../../../../types';
+import { User, PlaylistTrack } from '../../../../backend/types';
 import Carousel from '../carousel/carousel';
 import SongList from '../songList/songList';
 import './home.scss';

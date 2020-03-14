@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { User } from '../../../../types';
+import { User } from '../../../../backend/types';
 import icon from '../../img/spotifyIcon.png';
 import * as options from '../../options.json';
 import './navbar.scss';

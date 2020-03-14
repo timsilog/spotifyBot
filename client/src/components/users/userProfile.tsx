@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { User, PlaylistTrack } from '../../../../types';
+import { User, PlaylistTrack } from '../../../../backend/types';
 import SongList from '../songList/songList';
 
 interface UserProfileProps {
@@ -56,7 +56,7 @@ export default class UserProfile extends Component<UserProfileProps, {}> {
 
   private getSongs = () => {
     this.setState({ isLoading: true }, () => {
-      fetch(`http://localhost:4000/songs?no_limit=true&reverse=true&user_id=${this.state.user?.id}`)
+      fetch(`https://1ramm3udm8.execute-api.us-west-1.amazonaws.com/latest/songs?no_limit=true&reverse=true&user_id=${this.state.user?.id}`)
         .then(res => res.json())
         .then(data => this.setState({
           users: data.users,
