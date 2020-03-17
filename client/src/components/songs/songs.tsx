@@ -4,6 +4,7 @@ import SongList from '../songList/songList';
 import './songs.scss';
 import Loader from 'react-loader-spinner';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import url from '../../serverUrl';
 
 export default class Songs extends Component {
   private OFFSET: number = 50;
@@ -35,7 +36,7 @@ export default class Songs extends Component {
 
   private getSongs = (offset: number) => {
     this.setState({ isLoading: true }, () => {
-      fetch(`https://1ramm3udm8.execute-api.us-west-1.amazonaws.com/latest/songs?offset=${offset}`)
+      fetch(`${url}/songs?offset=${offset}`)
         .then(res => res.json())
         .then(data => {
           const songs = this.getSortedPlaylist(data.songs);
@@ -76,7 +77,7 @@ export default class Songs extends Component {
             : <div><SongList songs={[]} users={{}} /></div>
         }
         {
-          this.state.isLoading
+          this.state.isLoading && this.state.songs.length
             ? <div className='loader-container'>
               <Loader type='TailSpin'
                 color='#ffffff'

@@ -4,6 +4,9 @@
   background-color: rgba(14, 14, 14, .3);
   overflow: scroll;
   box-shadow: .5px .5px 5px black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   .graph-bar-container {
     height: 2.5em;
     margin-top: .2em;

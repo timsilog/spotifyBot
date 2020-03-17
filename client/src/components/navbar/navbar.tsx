@@ -9,7 +9,8 @@ import rightArrow from '../../img/rightArrow.png';
 
 const authEndpoint = 'https://accounts.spotify.com/authorize/?';
 const clientId = options.clientId;
-const redirectUri = "http://localhost:3000";
+const redirectUri = "https://thecollablist.com";
+// const redirectUri = "http://localhost:3000";
 const scopes = [
   // "user-read-currently-playing",
   // "user-read-playback-state",
@@ -81,13 +82,24 @@ export default class Navbar extends Component<{ token: string }, {}> {
     this.setState({ navMenuOpen: !this.state.navMenuOpen });
   }
 
+  private redirectAuth = () => {
+    window.open(`${authEndpoint}client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join("%20")}&response_type=token&show_dialog=true`);
+    // window.close();
+  }
+
+  private goHome = () => {
+    window.location.href = "https://thecolablist.com";
+  }
+
   render() {
     return (
       <div className="nav-container">
         <nav className="my-nav">
           <div className="my-nav-left">
-            <img src={icon} alt="spotify-icon" className="icon"></img>
-            <Link to="/" className="home-link">Community Collab Manager</Link>
+            <img onClick={this.goHome} src={icon} alt="spotify-icon" className="icon"></img>
+            <Link to="/" className="home-link">
+              Community Collab Manager
+              </Link>
           </div>
           <div className="my-nav-right">
             <div className='nav-links'>
@@ -102,20 +114,21 @@ export default class Navbar extends Component<{ token: string }, {}> {
                 alt='nav-menu-img'
                 onClick={this.toggleNavMenu} />
             </div>
-            {
+            {/* {
               this.state.token && this.state.user
                 ? <div className="user-image-container"><img
                   className="user-image"
                   src={this.state.user.images[0].url}
                   alt={this.state.user.display_name}
                 /></div>
-                : <a
+                : <div
                   className="login-button"
-                  href={`${authEndpoint}client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join("%20")}&response_type=token&show_dialog=true`}
+                  onClick={this.redirectAuth}
+                // href={`${authEndpoint}client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join("%20")}&response_type=token&show_dialog=true`}
                 >
                   Login
-            </a>
-            }
+            </div>
+            } */}
           </div>
         </nav>
         <div className={`nav-menu${this.state.navMenuOpen ? ' open' : ''}`}

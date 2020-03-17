@@ -1,0 +1,42 @@
+{
+  "CallerReference": "DISTRIBUTIONNAME",
+  "Aliases": {
+    "Quantity": 1,
+    "Items": [
+      "SITENAME"
+    ]
+  },
+  "DefaultRootObject": "index.html",
+  "Origins": {
+    "Quantity": 1,
+    "Items": [
+      {
+        "Id": "S3-BUCKETNAME",
+        "DomainName": "BUCKETNAME.s3-website.BUCKETREGION.amazonaws.com",
+        "CustomOriginConfig": {
+          "HTTPPort": 80,
+          "HTTPSPort": 443,
+          "OriginProtocolPolicy": "http-only"
+        }
+      }
+    ]
+  },
+  "DefaultCacheBehavior": {
+    "TargetOriginId": "S3-BUCKETNAME",
+    "ForwardedValues": {
+      "QueryString": true,
+      "Cookies": {
+        "Forward": "none"
+      }
+    },
+    "TrustedSigners": {
+      "Enabled": false,
+      "Quantity": 0
+    },
+    "ViewerProtocolPolicy": "allow-all",
+    "MinTTL": 3600
+  },
+  "Comment": "",
+  "PriceClass": "PriceClass_All",
+  "Enabled": true
+}

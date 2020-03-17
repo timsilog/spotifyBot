@@ -5,6 +5,7 @@ import UserProfile from './userProfile';
 import UserGraph from './userGraph';
 import './users.scss';
 import downButton from '../../img/downButton.png';
+import url from '../../serverUrl';
 
 export interface UserProps {
   users: { [key: string]: User },
@@ -30,12 +31,12 @@ export default class Users extends Component<UserProps, {}> {
 
   componentDidMount() {
     if (!Object.keys(this.state.users).length) {
-      fetch(`https://1ramm3udm8.execute-api.us-west-1.amazonaws.com/latest/current`)
+      fetch(`${url}/current`)
         .then(res => res.json())
         .then(data => this.setState({ users: data.users, currentSongs: data.songs }));
     }
     if (!this.state.songs.length) {
-      fetch(`https://1ramm3udm8.execute-api.us-west-1.amazonaws.com/latest/songs?no_limit=true`)
+      fetch(`${url}/songs?no_limit=true`)
         .then(res => res.json())
         .then(data => this.setState({ songs: data.songs }));
     }
@@ -119,6 +120,7 @@ export default class Users extends Component<UserProps, {}> {
               <br />
               <h2>Current Playlist{this.state.currentSongs.length ? ` - ${this.state.currentSongs.length} songs` : ''}</h2>
               <UserGraph users={this.state.users} songs={this.state.currentSongs} />
+              <br />
             </div>
           }
           <Route

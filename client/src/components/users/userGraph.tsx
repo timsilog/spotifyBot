@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { User, PlaylistTrack } from '../../../../backend/types';
 import { Link } from 'react-router-dom';
 import './userGraph.scss';
+import Loader from 'react-loader-spinner';
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 interface UserGraphProps {
   users: { [key: string]: User },
@@ -46,24 +48,26 @@ export default class UserGraph extends Component<UserGraphProps, {}> {
 
   private getBar(user: User, count: number) {
     const percentage = this.state.counts[user.id] / this.state.songs.length * 100;
-    return <div
-      className='graph-bar-container'
-      style={{ width: `${percentage * 1.5}%` }}
-      key={user.display_name}
-    >
-      <div className='graph-bar'>
-        <img
-          className='graph-bar-img'
-          alt={user.display_name}
-          src={user.images[0].url}
-        />
-        <Link className='graph-bar-link' to={`/users/${user.display_name}`}>
-          <div className='graph-bar-count'>
-            {count}
-          </div>
-        </Link>
+    if (percentage) {
+      return <div
+        className='graph-bar-container'
+        style={{ width: `${percentage * 1.5}%` }}
+        key={user.display_name}
+      >
+        <div className='graph-bar'>
+          <img
+            className='graph-bar-img'
+            alt={user.display_name}
+            src={user.images[0].url}
+          />
+          <Link className='graph-bar-link' to={`/users/${user.display_name}`}>
+            <div className='graph-bar-count'>
+              {count}
+            </div>
+          </Link>
+        </div>
       </div>
-    </div>
+    }
   }
 
   render() {
@@ -72,7 +76,12 @@ export default class UserGraph extends Component<UserGraphProps, {}> {
         {
           this.state.songs.length
             ? Object.values(this.state.users).map(user => this.getBar(user, this.state.counts[user.id]))
-            : ''
+            : <div className='loader-container'>
+              <Loader type='TailSpin'
+                color='#ffffff'
+                height={40}
+                width={40}
+              /></div>
         }
       </div>
     )

@@ -48,10 +48,16 @@ export default class Home extends Component<SongProps, {}> {
         <div className='title'>Recently Added</div>
         <Carousel songs={this.state.songs} users={this.state.users}></Carousel>
         <div className='title'>Chopping Block</div>
-        <div className='gray-text'>These songs will be removed next Monday!</div>
-        {this.state.songs.length
-          ? <SongList songs={choppingblock} users={this.state.users} />
-          : ''
+        <div className='gray-text'>
+          {
+            this.state.songs.length && !choppingblock.length
+              ? 'No songs to cut!'
+              : 'These songs will be removed next Monday!'
+          }
+        </div>
+        {this.state.songs.length && !choppingblock.length
+          ? <div></div>
+          : <SongList songs={choppingblock} users={this.state.users} />
         }
       </div>
     )

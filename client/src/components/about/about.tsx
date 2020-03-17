@@ -100,17 +100,19 @@ export default class About extends Component<AboutProps, {}> {
           <div>
             <h1>Privacy</h1>
             <div className='text'>
-              As a contributor, your public user data from Spotify will be stored in our database. Only data publicly accessible via the Spotify API is accessed. No private data is accessed. As a user of this site, by authenticating with your Spotify account you give this site access to your public user data as well.
+              As a contributor, your public user data from Spotify will be stored in our database. Only data publicly accessible via the Spotify API is accessed. No private data is accessed.
+              {/* As a user of this site, by authenticating with your Spotify account you give this site access to your public user data as well. 
               This includes:
+              */}
             </div>
-            <ul>
+            {/* <ul>
               <li>Your email</li>
               <li>Your name and username</li>
               <li>Your profile picture</li>
               <li>How many followers you have on Spotify</li>
               <li>Your public playlists</li>
             </ul>
-            We currently do not do anything with any of this data.
+            We currently do not do anything with any of this data. */}
           </div>
         </div>
         <br />
@@ -119,10 +121,10 @@ export default class About extends Component<AboutProps, {}> {
           <div className='text'>
             <ul>
               <li>Sort lists by ascending or descending</li>
-              <li>Search bar for song list</li>
-              <li>Do something with authentication (logging in currently does nothing)</li>
+              <li>Search bar for song lists</li>
+              {/* <li>Do something with authentication (logging in currently does nothing)</li>
               <li>Ability to like/thumbs up songs</li>
-              <li>Ability to generate playlists from liked songs or add songs to existing playlists</li>
+              <li>Ability to generate playlists from liked songs or add songs to existing playlists</li> */}
               <li>Song streak (# of consecutive weeks a user added songs)</li>
               <li>Show artist stats</li>
               <li>Improve loading times and overall flow/ux</li>

@@ -4,9 +4,10 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const PORT = 4000;
 const routes = express.Router();
-// const options = require('./options.json');
+const options = require('./options.json');
 const MongoClient = require('mongodb').MongoClient;
-const uri = process.env.mongoUri;
+// const uri = process.env.mongoUri;
+const uri = options.mongoUri;
 let db;
 
 // client.connect(function (err, database) {
@@ -29,7 +30,7 @@ routes.route('/').get((req, res) => {
 routes.route('/current').get(async (req, res) => {
   const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
   client.connect(async (err, database) => {
-    // if (err) return console.error(err);
+    if (err) return console.error(err);
     if (err) res.send(err);
     try {
       db = database.db('test');

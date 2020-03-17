@@ -2,6 +2,8 @@ import React from 'react';
 import { PlaylistTrack, User } from '../../../../backend/types';
 import CarouselSong from './carouselSong';
 import './carousel.scss';
+import Loader from 'react-loader-spinner';
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 interface CarouselProps {
   users: {},
@@ -87,7 +89,12 @@ export default class Carousel extends React.Component<CarouselProps, {}> {
     this.numSongs = songs.length;
     return (
       <div className="my-carousel" ref={this.myRef}>
-        {songs.reverse()}
+        {songs.length ? songs.reverse() : <div className='loader-container'>
+          <Loader type='TailSpin'
+            color='#ffffff'
+            height={40}
+            width={40}
+          /></div>}
       </div>
     )
   }
