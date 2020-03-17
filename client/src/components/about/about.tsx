@@ -128,6 +128,9 @@ export default class About extends Component<AboutProps, {}> {
               <li>Song streak (# of consecutive weeks a user added songs)</li>
               <li>Show artist stats</li>
               <li>Improve loading times and overall flow/ux</li>
+              <li>Disable autoscrolling on carousel</li>
+              <li>Play one preview at a time</li>
+              <li>Add volume sliders</li>
             </ul>
           </div>
         </div>

@@ -50,29 +50,31 @@ const main = async () => {
     // return removals;
     // const temp = await db.collection('users').remove({ 'name.id': '12160901527' });
     // return temp;
+
+
     const insertMe = {
-      "display_name": "Shine Hsiao",
+      "display_name": "Anthony Dao",
       "external_urls": {
-        "spotify": "https://open.spotify.com/user/12160901527"
+        "spotify": "https://open.spotify.com/user/boxstompers"
       },
       "followers": {
         "href": null,
-        "total": 29
+        "total": 17
       },
-      "href": "https://api.spotify.com/v1/users/12160901527",
-      "id": "12160901527",
+      "href": "https://api.spotify.com/v1/users/boxstompers",
+      "id": "boxstompers",
       "images": [
         {
           "height": null,
-          "url": "https://scontent.xx.fbcdn.net/v/t1.0-1/p320x320/66780962_10157202927526217_5898749041134534656_o.jpg?_nc_cat=107&_nc_sid=0c64ff&_nc_ohc=9zE_XjNs6u0AX_4mIFG&_nc_ht=scontent.xx&_nc_tp=6&oh=35d7f39f12be4965e5a784d921c2be0d&oe=5E96844A",
+          "url": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=689652551093541&height=300&width=300&ext=1587003286&hash=AeSFxWAh9FA2isKb",
           "width": null
         }
       ],
       "type": "user",
-      "uri": "spotify:user:12160901527"
+      "uri": "spotify:user:boxstompers"
     }
     // const check = await db.collection('users').insertOne(insertMe);
-    const check = await db.collection('users').findOne({ id: '12160901527' });
+    const check = await (await db.collection('users').find()).toArray();
     return check;
     // return await check.toArray()
     // const res = await spotifyApi.getTrack('2JTB1XsGtI8waaIBarHaQs');

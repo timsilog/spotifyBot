@@ -37,6 +37,7 @@ routes.route('/current').get(async (req, res) => {
       const userArr = await (await db.collection('users').find()).toArray();
       const users = {};
       for (const user of userArr) {
+        console.log(user.id);
         users[user.id] = user;
       }
       const current = (await db.collection('currentPlaylist').findOne()).currentList;

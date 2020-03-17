@@ -21,8 +21,6 @@ interface SongListSongState {
 export default class SongListSong extends Component<SongProps, {}> {
   state: SongListSongState;
 
-  private temp = 'https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=10152279923890202&height=300&width=300&ext=1585148023&hash=AeQwAE8ItLQDG9my';
-
   constructor(props: SongProps) {
     super(props);
     this.state = {
@@ -32,7 +30,7 @@ export default class SongListSong extends Component<SongProps, {}> {
       audio: new Audio(props.song.track.preview_url),
       isPlaying: false,
     };
-    this.state.audio.volume = .5;
+    this.state.audio.volume = .4;
     this.state.audio.onended = this.handleAudioOff;
     this.state.audio.onpause = this.handleAudioOff;
     this.state.audio.onplay = this.handleAudioOn;

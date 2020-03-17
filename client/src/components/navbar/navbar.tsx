@@ -88,7 +88,7 @@ export default class Navbar extends Component<{ token: string }, {}> {
   }
 
   private goHome = () => {
-    window.location.href = "https://thecolablist.com";
+    window.location.href = "https://thecollablist.com";
   }
 
   render() {
