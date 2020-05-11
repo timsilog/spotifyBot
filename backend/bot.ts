@@ -34,6 +34,11 @@ const main = async () => {
   try {
     // await getAuth();
     const db = await getDb();
+    const u = await spotifyApi.getUser('timsilog');
+    const user = u.body;
+    const tim = await db.collection('users').replaceOne({ id: 'timsilog' }, user);
+    return tim;
+
     // const songs = await (await db.collection('songs').find().skip(300).limit(50)).toArray();
     // const removeMe = [
     //   '5e5f21e7b771091551db9d6a',
@@ -74,8 +79,7 @@ const main = async () => {
       "uri": "spotify:user:boxstompers"
     }
     // const check = await db.collection('users').insertOne(insertMe);
-    const check = await (await db.collection('users').find()).toArray();
-    return check;
+    // const check = await (await db.collection('users').find()).toArray();
     // return await check.toArray()
     // const res = await spotifyApi.getTrack('2JTB1XsGtI8waaIBarHaQs');
 
