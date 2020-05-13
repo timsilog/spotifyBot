@@ -10,7 +10,7 @@ export interface PlaylistTrack {
 export interface SimplifiedUser {
   external_urls: any,
   href: string,
-  id: number,
+  id: string,
   type: string,
   uri: string,
 }
@@ -23,7 +23,7 @@ export interface User {
     total: number
   }
   href: string,
-  id: number,
+  id: string,
   images: Image[],
   type: string,
   uri: string,

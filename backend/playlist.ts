@@ -45,15 +45,15 @@ export const removeSongs = async (spotifyApi: SpotifyApi, playlistId: string, gr
 }
 
 // If user who added the song isn't already in the db, add them
-export const addUser = async (spotifyApi: SpotifyApi, user: SimplifiedUser) => {
+export const addUser = async (spotifyApi: SpotifyApi, userId: string) => {
   const db = await getDb();
-  const check = await db.collection('users').findOne({ id: user.id });
+  const check = await db.collection('users').findOne({ id: userId });
   if (check) {
     // user already exists
     return;
   }
   try {
-    const spotifyUser = await spotifyApi.getUser(user.id);
+    const spotifyUser = await spotifyApi.getUser(userId);
     const a = await db.collection('users').insertOne(spotifyUser.body);
     return a;
   } catch (e) {
@@ -61,7 +61,7 @@ export const addUser = async (spotifyApi: SpotifyApi, user: SimplifiedUser) => {
     console.log(e);
     if (e.message === 'Unauthorized') {
       await spotifyApi.refreshAuth();
-      return addUser(spotifyApi, user);
+      return addUser(spotifyApi, userId);
     }
   }
 }
@@ -81,7 +81,9 @@ export const cleanPlaylist = async (spotifyApi: SpotifyApi, playlistId: string, 
     }
     map[song.track.id] = true;
   }
-  await spotifyApi.removeTracksFromPlaylist(playlistId, toBeRemoved, {});
+  if (toBeRemoved.length) {
+    await spotifyApi.removeTracksFromPlaylist(playlistId, toBeRemoved, {});
+  }
 }
 
 // Clean playlist, then add newly found songs to db
@@ -91,23 +93,30 @@ export const updatePlaylist = async (spotifyApi: SpotifyApi, playlistId: string)
   // get current playlist; clean out dupes
   const currentPl: PlaylistTrack[] = await getFullSpotifyPlaylist(spotifyApi, playlistId);
   await cleanPlaylist(spotifyApi, playlistId, currentPl);
-
+  const currentIds: string[] = currentPl.map(track => track.track.id);
+  console.log(currentIds.length);
   // get db playlist and find new songs
   // TODO: look for removed songs
-  const dbPlaylist: PlaylistTrack[] = await (await db.collection('songs').find()).toArray();
+  const dbTracks: PlaylistTrack[] = await (await db.collection('songs').find({ 'track.id': { $in: currentIds } })).toArray();
+  console.log(dbTracks.length);
+  if (currentIds.length === dbTracks.length) {
+    return;
+  }
   const dbMap: { string?: PlaylistTrack } = {};
-  for (const song of dbPlaylist) {
+  for (const song of dbTracks) {
     dbMap[song.track.id] = song;
   }
   const newSongs: PlaylistTrack[] = [];
-  const currentIds: string[] = [];
+  const contributors: Set<string> = new Set();
   for (const song of currentPl) {
-    currentIds.push(song.track.id);
     if (!dbMap[song.track.id]) {
       newSongs.push(song);
-      await addUser(spotifyApi, song.added_by);
+      contributors.add(song.added_by.id)
     }
   }
+  contributors.forEach(async (id) => {
+    await addUser(spotifyApi, id);
+  });
 
   // db insertions
   const insertions: {}[] = [];

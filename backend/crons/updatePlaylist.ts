@@ -17,14 +17,12 @@ const main = async () => {
   try {
     const res = await updatePlaylist(spotifyApi, options.playlistId);
     closeDb();
-    return res;
+    return { success: res };
   } catch (e) {
-    console.log("ERROR");
+    console.error("UPDATEPLAYLIST ERROR");
     console.error(e);
     await sendErrorEmail(e, 'updatePlaylist()');
   }
 }
 
-main().then(res => {
-  console.log(res);
-});
+main().then(res => console.log(res));
