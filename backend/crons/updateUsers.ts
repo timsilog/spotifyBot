@@ -18,13 +18,13 @@ const updateUsers = async () => {
     const db = await getDb();
     const dbUsers: User[] = await (await db.collection('users').find()).toArray();
     const insertions = [];
-    console.log(test);
     for (const dbUser of dbUsers) {
-      console.log(dbUser);
+      // console.log(dbUser);
       const user = (await spotifyApi.getUser(dbUser.id)).body;
       const insertion = await db.collection('users').updateOne({ id: user.id }, { $set: user });
       insertions.push(insertion);
     }
+    return `Updated: ${insertions.length}`;
   } catch (err) {
     console.error("UPDATEUSERS ERROR");
     console.error(err);
